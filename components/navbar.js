@@ -1,7 +1,6 @@
 import { Navbar, Button } from "flowbite-react";
 import { Telephone } from 'react-bootstrap-icons';
 import { useRouter } from "next/router";
-import name from '../public/images/name.png'
 
 export default function Nav() {
     const router = useRouter();
