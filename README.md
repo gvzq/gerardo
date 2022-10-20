@@ -1,3 +1,5 @@
+[![Deploy Next.js site to Pages](https://github.com/gvzq/gerardo/actions/workflows/nextjs-publish.yml/badge.svg?branch=main)](https://github.com/gvzq/gerardo/actions/workflows/nextjs-publish.yml)
+
 # Deploying to GitHub Pages
 
 This example supports deloying a static Next.js application (using `next export`) to GitHub Pages.
