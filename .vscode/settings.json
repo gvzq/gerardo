@@ -1,13 +1,18 @@
 {
   "cSpell.words": [
     "flowbite",
-    "nextjs"
+    "nextjs",
+    "roadmap",
+    "tailwindcss",
+    "webp"
   ],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-	  "source.fixAll.eslint": true
+    "source.fixAll.eslint": true
   },
   "eslint.validate": [
-	  "javascript"
+    "javascript"
   ],
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
 }

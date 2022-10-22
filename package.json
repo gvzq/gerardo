@@ -2,13 +2,13 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
-    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages"
+    "build": "next build && next export"
   },
   "dependencies": {
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "next": "latest",
+    "prop-types": "^15.8.1",
     "react": "latest",
     "react-bootstrap-icons": "^1.8.4",
     "react-dom": "latest",
