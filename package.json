@@ -10,9 +10,8 @@
     "next": "latest",
     "prop-types": "^15.8.1",
     "react": "latest",
-    "react-bootstrap-icons": "^1.8.4",
     "react-dom": "latest",
-    "react-feather": "^2.0.10",
+    "react-icons": "^4.6.0",
     "react-joyride": "^2.5.3"
   },
   "devDependencies": {
