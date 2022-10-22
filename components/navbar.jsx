@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Button } from 'flowbite-react';
-import { Telephone } from 'react-bootstrap-icons';
+import { BsTelephone } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 
 export default function Nav() {
@@ -14,7 +14,7 @@ export default function Nav() {
       </Navbar.Brand>
       <div className="flex md:order-2 gap-2">
         <Button href="tel:+1(512)200-3641">
-          <Telephone className="mr-1" />
+          <BsTelephone className="mr-1" />
           {' '}
           (512) 200-3641
         </Button>

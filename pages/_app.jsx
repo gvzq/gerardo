@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.css';
-import 'tailwindcss/tailwind.css';
+// import 'tailwindcss/tailwind.css';
 import Head from 'next/head';
 import Script from 'next/script';
 import React from 'react';
@@ -27,6 +27,9 @@ function MyApp({ Component, pageProps }) {
 }
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.node.isRequired,
+  pageProps: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 export default MyApp;

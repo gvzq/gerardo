@@ -2,7 +2,16 @@ import React from 'react';
 import { Button } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Telephone } from 'react-bootstrap-icons';
+import { BsWordpress, BsFillLightningChargeFill } from 'react-icons/bs';
+import {
+  FaServer, FaAws, FaReact, FaAngular, FaNodeJs, FaGithub, FaElementor,
+} from 'react-icons/fa';
+import {
+  SiGooglecloud, SiMicrosoftazure, SiVercel,
+  SiGatsby, SiHubspot,
+} from 'react-icons/si';
+import { DiScrum, DiJavascript, DiGoogleAnalytics } from 'react-icons/di';
+import { TbBrandNextjs } from 'react-icons/tb';
 import HeroImage from '../components/heroImage';
 import innovation from '../public/images/innovation-pipeline.jpeg';
 
@@ -20,14 +29,13 @@ function CallToAction() {
 
 function Header() {
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div className="bg-gray-200 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
           Gerardo Vazquez
         </p>
         <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-          Hey,
-          I&apos;m Gerardo
+          I&apos;m here to help you
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
           I design effective websites, develop the best solution, and I measure the impact.
@@ -41,7 +49,7 @@ function Header() {
 }
 function Quote() {
   return (
-    <section className="bg-gray-50 dark:bg-gray-800">
+    <section className="bg-gray-200 dark:bg-gray-800">
       <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
         <figure className="max-w-screen-md mx-auto">
           <svg className="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +62,9 @@ function Quote() {
             {/* <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture" /> */}
             <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
               <div className="pr-3 font-medium text-gray-900 dark:text-white">John Johnson</div>
-              {/* <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">CEO at Google</div> */}
+              {/* <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
+              CEO at Google
+              </div> */}
             </div>
           </figcaption>
         </figure>
@@ -68,128 +78,73 @@ function Features() {
       <div className="grid gap-8 row-gap-10 lg:grid-cols-2">
         <div className="max-w-md sm:mx-auto sm:text-center">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-            <svg
-              className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-              stroke="currentColor"
-              viewBox="0 0 52 52"
-            >
-              <polygon
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                points="29 13 14 29 25 29 23 39 38 23 27 23"
-              />
-            </svg>
+            <DiJavascript className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
           </div>
-          <h6 className="mb-3 text-xl font-bold leading-5">The deep ocean</h6>
+          <h6 className="mb-3 text-xl font-bold leading-5">JavaScript</h6>
           <p className="mb-3 text-sm text-gray-900">
-            A flower in my garden, a mystery in my panties. Heart attack never
-            stopped old Big Bear. I didn&apos;t even know we were calling him Big
-            Bear. We never had the chance to.
+            JavaScript is a programming language used in 98% on the client side in websites,
+            and could be used in servers as well.
+            Gerardo has experience with React, Gatsby, Next, Node, and Angular.
           </p>
-          <a
-            href="/"
-            aria-label=""
-            className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-          >
-            Learn more
-          </a>
+          <p className="flex items-center justify-center">
+            <TbBrandNextjs />
+            <FaAngular />
+            <FaReact />
+            <FaNodeJs />
+            <SiGatsby />
+          </p>
         </div>
         <div className="max-w-md sm:mx-auto sm:text-center">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-            <svg
-              className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-              stroke="currentColor"
-              viewBox="0 0 52 52"
-            >
-              <polygon
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                points="29 13 14 29 25 29 23 39 38 23 27 23"
-              />
-            </svg>
+            <FaServer className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
           </div>
-          <h6 className="mb-3 text-xl font-bold leading-5">When has justice</h6>
+          <h6 className="mb-3 text-xl font-bold leading-5">Cloud</h6>
           <p className="mb-3 text-sm text-gray-900">
-            Rough pomfret lemon shark plownose chimaera southern sandfish
-            kokanee northern sea robin Antarctic cod. Yellow-and-black triplefin
-            gulper South American Lungfish mahi-mahi, butterflyfish glass
-            catfish soapfish ling gray mullet!
+            Cloud computing is the on-demand delivery with pay-as-you-go pricing.
+            Gerardo has experience in AWS, GCP, Vercel, and Azure.
           </p>
-          <a
-            href="/"
-            aria-label=""
-            className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-          >
-            Learn more
-          </a>
+          <p className="flex items-center justify-center">
+            <FaAws />
+            <SiGooglecloud />
+            <SiVercel />
+            <SiMicrosoftazure />
+          </p>
         </div>
         <div className="max-w-md sm:mx-auto sm:text-center">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-            <svg
-              className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-              stroke="currentColor"
-              viewBox="0 0 52 52"
-            >
-              <polygon
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                points="29 13 14 29 25 29 23 39 38 23 27 23"
-              />
-            </svg>
+            <BsWordpress className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
           </div>
-          <h6 className="mb-3 text-xl font-bold leading-5">Organically grow</h6>
+          <h6 className="mb-3 text-xl font-bold leading-5">Wordpress</h6>
           <p className="mb-3 text-sm text-gray-900">
-            A slice of heaven. O for awesome, this chocka full cuzzie is as
-            rip-off as a cracker. Meanwhile, in behind the bicycle shed,
-            Hercules Morse, as big as a horse and Mrs Falani were up to no good
-            with a bunch of crook pikelets.
+            WordPress is a content management system and
+            powers over 43.3% of all the websites on the Internet.
+            Gerardo has experience with Elementor, Hubspot,
+            Search Engine Optimization (SEO), Accelerated Mobile Pages (AMP),
+            Page Analytics, and Cache Plugins.
           </p>
-          <a
-            href="/"
-            aria-label=""
-            className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-          >
-            Learn more
-          </a>
+          <p className="flex items-center justify-center">
+            <FaElementor />
+            <SiHubspot />
+            <BsFillLightningChargeFill />
+            <DiGoogleAnalytics />
+          </p>
         </div>
         <div className="max-w-md sm:mx-auto sm:text-center">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-            <svg
-              className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-              stroke="currentColor"
-              viewBox="0 0 52 52"
-            >
-              <polygon
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                points="29 13 14 29 25 29 23 39 38 23 27 23"
-              />
-            </svg>
+            <DiScrum className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
           </div>
           <h6 className="mb-3 text-xl font-bold leading-5">
-            A slice of heaven
+            Agile Product Management
           </h6>
           <p className="mb-3 text-sm text-gray-900">
-            Disrupt inspire and think tank, social entrepreneur but preliminary
-            thinking think tank compelling. Inspiring, invest synergy capacity
-            building, white paper; silo, unprecedented challenge B-corp
-            problem-solvers.
+            Agile is an iterative project management approach that
+            delivers value faster and with fewer errors.
+            Gerardo utilizes tools including but not limiting to
+            Git, Jira, Github, Microsoft Teams, or Slack to respond to change quickly.
           </p>
-          <a
-            href="/"
-            aria-label=""
-            className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-          >
-            Learn more
-          </a>
+          <p className="flex items-center justify-center">
+            <FaGithub />
+          </p>
         </div>
       </div>
     </div>

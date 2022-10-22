@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { Github, Linkedin } from 'react-bootstrap-icons';
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
 import profilePic from '../public/images/gerardo.png';
@@ -38,13 +37,13 @@ export default function ImageCard({ enableName = false }) {
                   href="https://www.linkedin.com/in/gvzqz"
                   className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
                 >
-                  <Linkedin />
+                  <BsLinkedin />
                 </Link>
                 <Link
                   href="https://github.com/gvzq"
                   className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
                 >
-                  <Github />
+                  <BsGithub />
                 </Link>
               </div>
             </div>
