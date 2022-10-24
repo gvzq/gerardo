@@ -1,6 +1,25 @@
 {
   "cSpell.words": [
+    "Elementor",
     "flowbite",
-    "nextjs"
-  ]
+    "Googlecloud",
+    "Hubspot",
+    "jwiwac",
+    "Microsoftazure",
+    "Microsoftteams",
+    "nextjs",
+    "postbuild",
+    "roadmap",
+    "tailwindcss",
+    "webp"
+  ],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
 }

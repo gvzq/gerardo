@@ -3,19 +3,28 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages"
+    "postbuild": "next-sitemap",
+    "start": "next start"
   },
   "dependencies": {
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "next": "latest",
+    "next-sitemap": "^3.1.29",
+    "prop-types": "^15.8.1",
     "react": "latest",
-    "react-bootstrap-icons": "^1.8.4",
     "react-dom": "latest",
-    "react-feather": "^2.0.10"
+    "react-icons": "^4.6.0",
+    "react-joyride": "^2.5.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
