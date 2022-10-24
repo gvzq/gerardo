@@ -1,6 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.css';
-// import 'tailwindcss/tailwind.css';
+import 'tailwindcss/tailwind.css';
 import Head from 'next/head';
 import Script from 'next/script';
 import React from 'react';

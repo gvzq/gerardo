@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsWordpress, BsFillLightningChargeFill } from 'react-icons/bs';
 import {
-  FaServer, FaAws, FaReact, FaAngular, FaNodeJs, FaGithub, FaElementor,
+  FaServer, FaAws, FaReact, FaAngular, FaNodeJs, FaGithub, FaElementor, FaSlack,
 } from 'react-icons/fa';
 import {
   SiGooglecloud, SiMicrosoftazure, SiVercel,
-  SiGatsby, SiHubspot,
+  SiGatsby, SiHubspot, SiJira, SiMicrosoftteams,
 } from 'react-icons/si';
 import { DiScrum, DiJavascript, DiGoogleAnalytics } from 'react-icons/di';
 import { TbBrandNextjs } from 'react-icons/tb';
@@ -86,7 +86,7 @@ function Features() {
             and could be used in servers as well.
             Gerardo has experience with React, Gatsby, Next, Node, and Angular.
           </p>
-          <p className="flex items-center justify-center">
+          <p className="flex space-x-2 items-center justify-center">
             <TbBrandNextjs />
             <FaAngular />
             <FaReact />
@@ -103,7 +103,7 @@ function Features() {
             Cloud computing is the on-demand delivery with pay-as-you-go pricing.
             Gerardo has experience in AWS, GCP, Vercel, and Azure.
           </p>
-          <p className="flex items-center justify-center">
+          <p className="flex space-x-2 items-center justify-center">
             <FaAws />
             <SiGooglecloud />
             <SiVercel />
@@ -122,7 +122,7 @@ function Features() {
             Search Engine Optimization (SEO), Accelerated Mobile Pages (AMP),
             Page Analytics, and Cache Plugins.
           </p>
-          <p className="flex items-center justify-center">
+          <p className="flex space-x-2 items-center justify-center">
             <FaElementor />
             <SiHubspot />
             <BsFillLightningChargeFill />
@@ -142,8 +142,11 @@ function Features() {
             Gerardo utilizes tools including but not limiting to
             Git, Jira, Github, Microsoft Teams, or Slack to respond to change quickly.
           </p>
-          <p className="flex items-center justify-center">
+          <p className="flex space-x-2 items-center justify-center">
             <FaGithub />
+            <SiJira />
+            <SiMicrosoftteams />
+            <FaSlack />
           </p>
         </div>
       </div>
