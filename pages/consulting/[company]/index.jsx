@@ -2,15 +2,15 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { Accordion } from 'flowbite-react';
 import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
 import { FaLaptopCode } from 'react-icons/fa';
 import { VscProject } from 'react-icons/vsc';
 import { CgWebsite } from 'react-icons/cg';
 import PropTypes from 'prop-types';
 import HeroImage from '../../../components/heroImage';
-// import recording from '../../../public/images/recording.webp';
-// import heatmapArea from '../../../public/images/heatmap-area.png';
-// import heatmapClick from '../../../public/images/heatmap-click.png';
+import recording from '../../../public/images/recording.webp';
+import heatmapArea from '../../../public/images/heatmap-area.png';
+import heatmapClick from '../../../public/images/heatmap-click.png';
 
 function AccordionLink({ href, text }) {
   return (
@@ -135,7 +135,6 @@ export default function Consulting() {
 
   return (
     <div className="h-full">
-
       <HeroImage
         header={(
           <>
@@ -148,164 +147,166 @@ export default function Consulting() {
           )}
         subheader="I will find the right solution for your needs"
       />
-
-      {/* BLOCK */}
-      {/* <div className="relative bg-gray-800">
-        <div className="absolute inset-x-0 bottom-0">
+      <section className="pb-20 relative block bg-gray-900">
+        <div
+          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
+          style={{ height: '80px' }}
+        >
           <svg
-            viewBox="0 0 224 12"
-            fill="currentColor"
-            className="w-full -mb-1 text-white"
+            className="absolute bottom-0 overflow-hidden"
+            xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="none"
+            version="1.1"
+            viewBox="0 0 2560 100"
+            x="0"
+            y="0"
           >
-            <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
+            <polygon
+              className="text-gray-900 fill-current"
+              points="2560 0 2560 100 0 100"
+            />
           </svg>
         </div>
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
-            <h2 className="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-              Title
-            </h2>
-            <p className="mb-6 text-base font-thin tracking-wide text-gray-300 md:text-lg">
-              Sub
-            </p>
-            <p className="max-w-md mb-10 text-xs font-thin tracking-wide text-gray-500 sm:text-sm sm:mx-auto md:mb-16">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium.
-            </p>
-            <a
-              href="/"
-              aria-label="Scroll down"
-              className="flex items-center justify-center w-10 h-10 mx-auto text-white duration-300 transform border border-gray-400 rounded-full hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="currentColor"
-              >
-                <path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div> */}
+        <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
+          <div className="flex flex-wrap text-center justify-center">
+            <div className="w-full lg:w-6/12 px-4">
+              <h2 className="text-4xl font-semibold text-white">
+                Services
+              </h2>
+              <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
+                Our team will collaborate with you to develop a plan for success.
+              </p>
 
-      <section className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-extrabold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-            Services
-          </h2>
-          <p className="text-base text-gray-700 md:text-lg">
-            Our team will collaborate with you to develop a  plan for success.
-          </p>
-        </div>
-        <div className="grid gap-8 row-gap-12 lg:grid-cols-3">
-          <div className="max-w-md sm:mx-auto sm:text-center border rounded shadow-sm">
-            <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-              <CgWebsite className="w-12 h-12 text-deep-purple-accent-400 sm:w-20 sm:h-20" />
             </div>
-            <h6 className="mb-3 text-xl font-bold leading-5">Web Design and Development</h6>
-            <p className="mb-3 text-sm text-gray-900">
-              Harness the power of modern website development.
-              Differentiate your company.
-              Redesign your product for better performance and efficiency
-              We help you plan, design, and develop, end-to-end.
-            </p>
           </div>
-          <div className="max-w-md sm:mx-auto sm:text-center border rounded shadow-sm">
-            <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-              <VscProject className="w-12 h-12 text-deep-purple-accent-400 sm:w-20 sm:h-20" />
+          <div className="flex flex-wrap mt-12 justify-center">
+            <div className="w-full lg:w-3/12 px-4 text-center">
+              <div className="text-gray-900 p-3 w-16 h-16 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+                <CgWebsite className="w-12 h-12 text-xl" />
+              </div>
+              <h6 className="text-xl mt-5 font-semibold text-white">
+                Web Design and Development
+              </h6>
+              <p className="mt-2 mb-4 text-gray-500">
+                Harness the power of modern website development.
+                Differentiate your company.
+                Redesign your product for better performance and efficiency
+                We help you plan, design, and develop, end-to-end.
+              </p>
             </div>
-            <h6 className="mb-3 text-xl font-bold leading-5">Project Management</h6>
-            <p className="mb-3 text-sm text-gray-900">
-              Strengthen your market offerings.
-              Innovate your offerings to enhance customer experiences.
-              Build your positioning and messaging.
-              Prioritize what matters most to your audience.
-            </p>
-          </div>
-          <div className="max-w-md sm:mx-auto sm:text-center border rounded shadow-sm">
-            <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-
-              <FaLaptopCode className="w-12 h-12 text-deep-purple-accent-400 sm:w-20 sm:h-20" />
+            <div className="w-full lg:w-3/12 px-4 text-center">
+              <div className="text-gray-900 p-3 w-16 h-16  shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+                <VscProject className="w-12 h-12 text-xl" />
+              </div>
+              <h5 className="text-xl mt-5 font-semibold text-white">
+                Project Management
+              </h5>
+              <p className="mt-2 mb-4 text-gray-500">
+                Strengthen your market offerings.
+                Innovate your offerings to enhance customer experiences.
+                Build your positioning and messaging.
+                Prioritize what matters most to your audience.
+              </p>
             </div>
-            <h6 className="mb-3 text-xl font-bold leading-5">Custom Software</h6>
-            <p className="mb-3 text-sm text-gray-900">
-              Analyze your software needs and create technology to help the operations.
-              Collaborate to build software that solves business problems.
-            </p>
+            <div className="w-full lg:w-3/12 px-4 text-center">
+              <div className="text-gray-900 p-3 w-16 h-16 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+                <FaLaptopCode className="w-12 h-12 text-xl" />
+              </div>
+              <h5 className="text-xl mt-5 font-semibold text-white">
+                Custom Software
+              </h5>
+              <p className="mt-2 mb-4 text-gray-500">
+                Analyze your software needs and create technology to help the operations.
+                Collaborate to build software that solves business problems.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Click Heatmap */}
-      {/* <section className="bg-slate-300">
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full
-        lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20"
-        >
-          <div className="flex flex-col lg:flex-row">
-            <div className="max-w-xl pr-16 mx-auto mb-10">
-              <h5 className="mb-6 text-3xl font-extrabold leading-none">
+      <section className="py-20 bg-gray-300">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap items-center">
+            <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
+              {/* <div className="text-gray-600 p-3 text-center
+              inline-flex items-center justify-center w-16 h-16
+               mb-6 shadow-lg rounded-full bg-gray-100">
+                <i className="fas fa-user-friends text-xl" />
+              </div> */}
+              <h3 className="text-3xl mb-2 font-semibold leading-normal">
                 Click Heatmap
-              </h5>
-              <p className="mb-6 text-gray-900">
+              </h3>
+              <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
                 A click heatmap lets you identify
                 the visitor experience, pinpoint roadblocks,
                 and boost conversions to create an optimized website.
               </p>
-              <div className="flex items-center">
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center h-12 px-6 mr-6
-                  font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                >
-                  Get started
-                </button>
-                <a
-                  href="/"
-                  aria-label=""
-                  className="inline-flex items-center
-                  font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-                >
-                  Learn more
-                </a>
-              </div>
             </div>
-            <div className="w-full">
-              <Image
-                className="object-cover h-48 w-96 rounded antialiased"
-                src={heatmapArea}
-                alt="User recording of website"
-                layout="intrinsic"
-              />
-               <Image
-                className="object-cover h-48 w-96 rounded antialiased"
-                src={heatmapClick}
-                alt="User recording of website"
-                layout="intrinsic"
-              />
+            <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
+              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
+                <Image
+                  className="w-full align-middle rounded-t-lg"
+                  src={heatmapClick}
+                  alt="User recording of website"
+                  layout="intrinsic"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </section> */}
 
-      {/* <section>
-        <h1>Behavior Analytics Tools</h1>
-        <p>
-          See what elements customers are drawn towards,
-          and the parts they completely miss.
-          Learn exactly where users move, click, and scroll, and stop scrolling to leave your site.
-        </p>
-        <Image
-          className="object-cover h-48 w-96 rounded antialiased"
-          src={recording}
-          alt="User recording of website"
-          layout="intrinsic"
-        />
-      </section> */}
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap items-center">
+            <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
+              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
+                <Image
+                  className="max-w-full rounded-lg shadow-lg"
+                  src={heatmapArea}
+                  alt="User recording of website"
+                  layout="intrinsic"
+                />
+              </div>
+            </div>
+            <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
+              {/* <div className="text-gray-600 p-3 text-center
+               inline-flex items-center justify-center
+                w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+                <i className="fas fa-user-friends text-xl" />
+              </div> */}
+              <h3 className="text-3xl mb-2 font-semibold leading-normal">
+                Area Heatmap
+              </h3>
+              <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
+                A click heatmap lets you identify
+                the visitor experience, pinpoint roadblocks,
+                and boost conversions to create an optimized website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="pb-20 block bg-gray-900">
+        <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
+          <div className="flex flex-wrap text-center justify-center">
+            <div className="w-full lg:w-6/12 px-4">
+              <h2 className="text-4xl font-semibold text-white">
+                Behavior Analytics Tools
+              </h2>
+              <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
+                See what elements customers are drawn towards,
+                and the parts they completely miss.
+                Learn exactly where users move, click, scroll, and stop to leave your site.
+              </p>
 
+            </div>
+            <Image
+              className="w-full aspect-video rounded antialiased"
+              src={recording}
+              alt="User recording of website"
+              layout="intrinsic"
+            />
+          </div>
+        </div>
+      </section>
       <section className="h-50 py-16">
         <Questions />
       </section>
