@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { Accordion } from 'flowbite-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,10 +6,10 @@ import { FaLaptopCode } from 'react-icons/fa';
 import { VscProject } from 'react-icons/vsc';
 import { CgWebsite } from 'react-icons/cg';
 import PropTypes from 'prop-types';
-import HeroImage from '../../../components/heroImage';
-import recording from '../../../public/images/recording.webp';
-import heatmapArea from '../../../public/images/heatmap-area.png';
-import heatmapClick from '../../../public/images/heatmap-click.png';
+import HeroImage from '../../components/heroImage';
+import recording from '../../public/images/recording.webp';
+import heatmapArea from '../../public/images/heatmap-area.png';
+import heatmapClick from '../../public/images/heatmap-click.png';
 
 function AccordionLink({ href, text }) {
   return (
@@ -126,13 +125,6 @@ function Questions() {
   );
 }
 export default function Consulting() {
-  const router = useRouter();
-  let { company } = router.query;
-
-  if (company) {
-    company = company.replaceAll('-', ' ').replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-  }
-
   return (
     <div className="h-full">
       <HeroImage
@@ -142,9 +134,9 @@ export default function Consulting() {
             <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">digital</span>
             {' and '}
             <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">software</span>
-            {` expert for ${company}.`}
+            {' expert for you.'}
           </>
-          )}
+        )}
         subheader="I will find the right solution for your needs"
       />
       <section className="pb-20 relative block bg-gray-900">
