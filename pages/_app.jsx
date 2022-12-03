@@ -31,6 +31,7 @@ MyApp.propTypes = {
   pageProps: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
+    PropTypes.shape({}),
   ]).isRequired,
 };
 export default MyApp;
