@@ -16,6 +16,7 @@ export default function WebsiteTechForm({ addWebsite }) {
     const headers = new Headers({
       'x-api-key': 'gerardo-x-key',
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     });
     const requestOptions = {
       method: 'POST',
@@ -25,7 +26,7 @@ export default function WebsiteTechForm({ addWebsite }) {
       }),
       redirect: 'follow',
     };
-    const url = process.env.NEXT_PUBLIC_REST ?? 'https://built-with-j22xtuwt4a-uc.a.run.app';
+    const url = process.env.NEXT_PUBLIC_REST;
     await fetch(`${url}/api/analyze/`, requestOptions)
       .then((response) => response.json())
       .then((result) => addWebsite(result.technologies))
