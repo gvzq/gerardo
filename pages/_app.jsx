@@ -14,10 +14,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link rel="apple-touch-icon" sizes="180x180" href="manifest/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="manifest/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="manifest/favicon-16x16.png" />
-        <link rel="manifest" href="manifest/site.webmanifest" />
+        <link rel="apple-touch-icon" sizes="180x180" href="https://gerardo.js.org/manifest/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://gerardo.js.org/manifest/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="https://gerardo.js.org/manifest/favicon-16x16.png" />
+        <link rel="manifest" href="https://gerardo.js.org/manifest/site.webmanifest" />
       </Head>
       <Nav />
       <Component {...pageProps} />
