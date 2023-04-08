@@ -1,24 +1,26 @@
 import Wappalyzer from 'wappalyzer';
 import validUrl from 'valid-url';
 
-const getTechnologies = async (req, res) => {
-  let { website } = req.body;
+const wappalyzer = new Wappalyzer();
+
+export default async function handler(request, response) {
+  // const { name } = request.query;
+  let { website } = request.body;
 
   if (typeof website === 'string') {
     website = website.trim();
   }
 
   if (!validUrl.isUri(website)) {
-    return res.status(400).send({ error: `'${website}' is not a valid URL` });
+    return response.status(400).send({ error: `'${website}' is not a valid URL` });
   }
 
-  const wappalyzer = new Wappalyzer();
   try {
     await wappalyzer.init();
     const site = await wappalyzer.open(website);
-    site.on('error', (e) => {
-      console.error(`wappalyzer error: ${e}`);
-    });
+    // site.on('error', (e) => {
+    //   // console.error(`wappalyzer error: ${e}`);
+    // });
     const tech = await site.analyze();
     tech.technologies = tech?.technologies
       .filter((elem) => elem?.confidence > 0)
@@ -30,11 +32,9 @@ const getTechnologies = async (req, res) => {
         return 0;
       });
     await wappalyzer.destroy();
-    return res.json(tech);
+    return response.json(tech);
   } catch (error) {
-    console.error(error, error.message.toString());
-    return res.status(400);
+    // console.error(error, error.message.toString());
+    return response.status(400).json(error.message);
   }
-};
-
-export default getTechnologies;
+}
