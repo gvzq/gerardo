@@ -26,7 +26,8 @@ export default function WebsiteTechForm({ addWebsite }) {
       }),
       redirect: 'follow',
     };
-    await fetch('/api/analyze/', requestOptions)
+    const url = process.env.NEXT_PUBLIC_REST;
+    await fetch(`${url}/api/analyze/`, requestOptions)
       .then((response) => response.json())
       .then((result) => addWebsite(result.technologies))
       .catch(() => addWebsite([]));
