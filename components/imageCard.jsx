@@ -9,7 +9,7 @@ import profileBackground from '../public/images/background.png';
 export default function ImageCard({ enableName = false }) {
   return (
     <>
-      <div className="px-4 py-2  container mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 lg:py-8">
+      <div className="px-4 py-2 container mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 lg:py-8">
         <div
           className="grid gap-10 mx-auto place-content-center bg-no-repeat bg-center"
           style={{
@@ -18,10 +18,9 @@ export default function ImageCard({ enableName = false }) {
         >
           <div>
             <Image
-              className="object-cover h-48 w-96 rounded antialiased"
+              className="object-cover rounded antialiased"
               src={profilePic}
               alt="Gerardo Vazquez"
-              layout="intrinsic"
             />
           </div>
         </div>

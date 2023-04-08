@@ -239,7 +239,6 @@ export default function Consulting() {
                   className="w-full align-middle rounded-t-lg"
                   src={heatmapClick}
                   alt="User recording of website"
-                  layout="intrinsic"
                 />
               </div>
             </div>
@@ -254,7 +253,6 @@ export default function Consulting() {
                   className="max-w-full rounded-lg shadow-lg"
                   src={heatmapArea}
                   alt="User recording of website"
-                  layout="intrinsic"
                 />
               </div>
             </div>
@@ -291,10 +289,9 @@ export default function Consulting() {
 
             </div>
             <Image
-              className="w-full aspect-video rounded antialiased"
+              className="w-full rounded antialiased"
               src={recording}
               alt="User recording of website"
-              layout="intrinsic"
             />
           </div>
         </div>

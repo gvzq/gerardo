@@ -17,7 +17,7 @@ import innovation from '../public/images/innovation-pipeline.jpeg';
 
 function CallToAction() {
   return (
-    <Link href="https://zcal.co/gerardo/gvzq.github.io">
+    <Link href="https://zcal.co/gerardo/consulting">
       <span>
         <Button size="xl" pill>
           Schedule a Meeting
@@ -153,7 +153,6 @@ function Features() {
     </div>
   );
 }
-
 function Process() {
   return (
     <div
@@ -316,10 +315,9 @@ function Process() {
         </div>
         <div className="relative">
           <Image
-            className="inset-0 object-cover object-bottom w-full rounded shadow-lg h-96 lg:absolute lg:h-full"
+            className="max-w-fit inset-0 object-cover object-bottom w-full rounded shadow-lg h-96 lg:absolute lg:h-full"
             src={innovation}
             alt="Innovation Pipeline"
-            layout="intrinsic"
           />
         </div>
       </div>
