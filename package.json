@@ -4,7 +4,8 @@
     "dev": "next",
     "build": "next build",
     "postbuild": "next-sitemap",
-    "start": "next start"
+    "start": "next start",
+    "export": "next build && next export"
   },
   "dependencies": {
     "flowbite": "^1.5.3",
