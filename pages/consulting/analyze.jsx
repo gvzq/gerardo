@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Card } from 'flowbite-react';
+import Image from 'next/image';
 
 export default function Analyze() {
   const [technologies, setTechnologies] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const [websiteInfo, setWebsiteInfo] = useState({
     website: '',
   });
@@ -27,11 +29,18 @@ export default function Analyze() {
       }),
       redirect: 'follow',
     };
+    setLoading(true);
     const url = process.env.NEXT_PUBLIC_REST;
     await fetch(`${url}/api/analyze/`, requestOptions)
       .then((response) => response.json())
-      .then((result) => setTechnologies(result.technologies))
-      .catch(() => setTechnologies([]));
+      .then((result) => {
+        setTechnologies(result.technologies);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+        setTechnologies([]);
+      });
     setWebsiteInfo({ website: '' });
   };
 
@@ -66,13 +75,17 @@ export default function Analyze() {
         </div>
       </section>
       <div className="container mx-auto p-6 grid grid-cols-3 gap-4">
+        {isLoading
+            && <p>Loading...</p>}
         {technologies.map((el) => (
           <div className="col-span-1 flex flex-col bg-white p-4" key={el.slug}>
             <Card>
               <h5 className="mb-2 font-bold text-2xl">
-                <img
+                <Image
                   src={`https://raw.githubusercontent.com/wappalyzer/wappalyzer/master/src/drivers/webextension/images/icons/${el.icon}`}
                   className="object-contain h-24 w-24"
+                  width={0}
+                  height={0}
                   alt={`${el.name} Logo`}
                   onError={({ currentTarget }) => {
                     /* eslint no-param-reassign: "error" */
@@ -83,11 +96,14 @@ export default function Analyze() {
                 {el.name}
               </h5>
               <p className="font-normal text-md text-gray-700 dark:text-gray-400">
-                {el.description}
+                {
+                (el?.description && el.description.length > 100)
+                  ? `${el.description.substring(0, 97)}...` : el.description
+                }
               </p>
               <div className="flex flex-wrap mt-auto pt-3 text-xs">
                 {el.categories.map((category) => (
-                  <p className="mr-2 mb-2">{category.name}</p>
+                  <p className="mr-2 mb-2" key={`${el.name}-${category.name}`}>{category.name}</p>
                 ))}
               </div>
             </Card>
@@ -97,10 +113,3 @@ export default function Analyze() {
     </div>
   );
 }
-
-// Analyze.propTypes = {
-//   addWebsite: PropTypes.func,
-// };
-// Analyze.defaultProps = {
-//   addWebsite: undefined,
-// };

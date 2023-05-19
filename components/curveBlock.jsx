@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function CurvedBlock() {
   return (
@@ -34,7 +35,7 @@ export default function CurvedBlock() {
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium doloremque laudantium.
           </p>
-          <a
+          <Link
             href="/"
             aria-label="Scroll down"
             className="flex items-center justify-center w-10 h-10 mx-auto
@@ -52,7 +53,7 @@ export default function CurvedBlock() {
             3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

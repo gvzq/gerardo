@@ -1,9 +1,16 @@
 import Wappalyzer from 'wappalyzer';
 import validUrl from 'valid-url';
+import NextCors from 'nextjs-cors';
 
 const wappalyzer = new Wappalyzer();
 
 export default async function handler(request, response) {
+  await NextCors(request, response, {
+    methods: ['GET', 'HEAD', 'PUT', 'POST'],
+    origin: '*',
+    optionsSuccessStatus: 200,
+  });
+
   let { website } = request.body;
 
   if (typeof website === 'string') {
@@ -29,6 +36,7 @@ export default async function handler(request, response) {
       });
     // console.log(tech);
     await wappalyzer.destroy();
+    // console.log(JSON.stringify(tech));
     return response.json(tech);
   } catch (error) {
     // console.error(error, error.message.toString());

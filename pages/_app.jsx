@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
       <Nav />
       <Component {...pageProps} />
       <Footer />
-      <Script dangerouslySetInnerHTML={{ __html: clarityMicrosoft }} />
+      <Script id="clarityMicrosoft" dangerouslySetInnerHTML={{ __html: clarityMicrosoft }} />
     </>
   );
 }
