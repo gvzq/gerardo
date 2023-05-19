@@ -4,7 +4,6 @@ import validUrl from 'valid-url';
 const wappalyzer = new Wappalyzer();
 
 export default async function handler(request, response) {
-  // const { name } = request.query;
   let { website } = request.body;
 
   if (typeof website === 'string') {
@@ -18,9 +17,6 @@ export default async function handler(request, response) {
   try {
     await wappalyzer.init();
     const site = await wappalyzer.open(website);
-    // site.on('error', (e) => {
-    //   // console.error(`wappalyzer error: ${e}`);
-    // });
     const tech = await site.analyze();
     tech.technologies = tech?.technologies
       .filter((elem) => elem?.confidence > 0)
@@ -31,6 +27,7 @@ export default async function handler(request, response) {
         if (keyA > keyB) return 1;
         return 0;
       });
+    // console.log(tech);
     await wappalyzer.destroy();
     return response.json(tech);
   } catch (error) {
