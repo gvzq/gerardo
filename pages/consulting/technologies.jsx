@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Card } from 'flowbite-react';
+import { Card, Spinner } from 'flowbite-react';
 import Image from 'next/image';
 
-export default function Analyze() {
-  const [technologies, setTechnologies] = useState([]);
+export default function Technologies() {
+  const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [websiteInfo, setWebsiteInfo] = useState({
     website: '',
@@ -30,16 +30,16 @@ export default function Analyze() {
       redirect: 'follow',
     };
     setLoading(true);
-    const url = process.env.NEXT_PUBLIC_REST;
+    const url = process.env.NEXT_PUBLIC_REST || 'http://localhost:3000';
     await fetch(`${url}/api/analyze/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setTechnologies(result.technologies);
+        setData(result);
         setLoading(false);
       })
       .catch(() => {
         setLoading(false);
-        setTechnologies([]);
+        setData([]);
       });
     setWebsiteInfo({ website: '' });
   };
@@ -69,47 +69,65 @@ export default function Analyze() {
               </label>
             </div>
             <div>
-              <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+              <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+                {isLoading ? (
+                  <>
+                    <Spinner aria-label="Spinner button example" />
+                    <span className="pl-3">
+                      Loading...
+                    </span>
+                  </>
+                ) : 'Submit'}
+
+              </button>
             </div>
           </form>
         </div>
       </section>
-      <div className="container mx-auto p-6 grid grid-cols-3 gap-4">
-        {isLoading
-            && <p>Loading...</p>}
-        {technologies.map((el) => (
-          <div className="col-span-1 flex flex-col bg-white p-4" key={el.slug}>
-            <Card>
-              <h5 className="mb-2 font-bold text-2xl">
-                <Image
-                  src={`https://raw.githubusercontent.com/wappalyzer/wappalyzer/master/src/drivers/webextension/images/icons/${el.icon}`}
-                  className="object-contain h-24 w-24"
-                  width={0}
-                  height={0}
-                  alt={`${el.name} Logo`}
-                  onError={({ currentTarget }) => {
-                    /* eslint no-param-reassign: "error" */
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src = 'https://via.placeholder.com/150/FFFFFF/?text=Gera';
-                  }}
-                />
-                {el.name}
-              </h5>
-              <p className="font-normal text-md text-gray-700 dark:text-gray-400">
-                {
+
+      {(data.technologies !== undefined && !isLoading) && (
+      <>
+        <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+          {data.description}
+        </p>
+        <div className="container mx-auto p-6 grid grid-cols-3 gap-4">
+          {data?.technologies.map((el) => (
+            <div className="col-span-1 flex flex-col bg-white p-4" key={el.slug}>
+              <Card>
+                <h5 className="mb-2 font-bold text-2xl">
+                  <Image
+                    src={`https://raw.githubusercontent.com/wappalyzer/wappalyzer/master/src/drivers/webextension/images/icons/${el.icon}`}
+                    className="object-contain h-24 w-24"
+                    width={0}
+                    height={0}
+                    alt={`${el.name} Logo`}
+                    onError={({ currentTarget }) => {
+                      /* eslint no-param-reassign: "error" */
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = 'https://via.placeholder.com/150/FFFFFF/?text=Gera';
+                    }}
+                  />
+                  {el.name}
+                </h5>
+                <p className="font-normal text-md text-gray-700 dark:text-gray-400">
+                  {
                 (el?.description && el.description.length > 100)
                   ? `${el.description.substring(0, 97)}...` : el.description
                 }
-              </p>
-              <div className="flex flex-wrap mt-auto pt-3 text-xs">
-                {el.categories.map((category) => (
-                  <p className="mr-2 mb-2" key={`${el.name}-${category.name}`}>{category.name}</p>
-                ))}
-              </div>
-            </Card>
-          </div>
-        ))}
-      </div>
+                </p>
+                <div className="flex flex-wrap mt-auto pt-3 text-xs">
+                  {el.categories.map((category) => (
+                    <p className="mr-2 mb-2" key={`${el.name}-${category.name}`}>{category.name}</p>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </>
+      )}
+
     </div>
   );
 }
