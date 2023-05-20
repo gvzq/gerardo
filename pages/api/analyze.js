@@ -1,10 +1,8 @@
-import Wappalyzer from 'wappalyzer';
 import validUrl from 'valid-url';
 import NextCors from 'nextjs-cors';
 import cohere from 'cohere-ai';
 
 cohere.init(process.env.COHERE_KEY);
-const wappalyzer = new Wappalyzer();
 
 export default async function handler(request, response) {
   await NextCors(request, response, {
@@ -24,9 +22,19 @@ export default async function handler(request, response) {
   }
 
   try {
-    await wappalyzer.init();
-    const site = await wappalyzer.open(website);
-    const tech = await site.analyze();
+    const headers = new Headers({
+      'x-api-key': 'gerardo-x-key',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
+    const requestOptions = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ website }),
+    };
+    const tech = await fetch(`${process.env.ANALYZE_REST}/api/analyze`, requestOptions)
+      .then((r) => r.json());
+
     let categories = tech?.technologies
       .flatMap((t) => t.categories.map((category) => category.name));
     categories = Array.from(new Set(categories));
