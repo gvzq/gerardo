@@ -27,11 +27,10 @@ export default function Technologies() {
       body: JSON.stringify({
         website: websiteInfo.website,
       }),
-      redirect: 'follow',
     };
     setLoading(true);
-    const url = process.env.NEXT_PUBLIC_REST || 'http://localhost:3000';
-    await fetch(`${url}/api/analyze/`, requestOptions)
+    const url = process.env.NEXT_PUBLIC_REST;
+    await fetch(`${url}/api/analyze`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setData(result);
