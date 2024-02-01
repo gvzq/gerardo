@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
-import profilePic from '../public/images/gerardo.png';
+import profilePic from '../public/images/gerardo.jpg';
 import profileBackground from '../public/images/background.png';
 
 export default function ImageCard({ enableName = false }) {
@@ -18,7 +18,7 @@ export default function ImageCard({ enableName = false }) {
         >
           <div>
             <Image
-              className="object-cover rounded antialiased"
+              className="object-cover rounded-full antialiased"
               src={profilePic}
               alt="Gerardo Vazquez"
             />
