@@ -20,7 +20,7 @@ export default async function handler(request, response) {
     optionsSuccessStatus: 200,
   });
 
-  let { website } = JSON.parse(request.body) || request.body;
+  let { website } = request.body;
 
   if (typeof website === 'string') {
     website = website.trim();

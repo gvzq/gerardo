@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Analytics } from '@vercel/analytics/react';
 import Nav from '../components/navbar';
 import Footer from '../components/footer';
 
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Footer />
       <Script id="clarityMicrosoft" dangerouslySetInnerHTML={{ __html: clarityMicrosoft }} />
+      <Analytics />
     </>
   );
 }
