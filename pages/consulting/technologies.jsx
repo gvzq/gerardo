@@ -20,8 +20,10 @@ export default function Technologies() {
       'x-api-key': 'gerardo-x-key',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json',
     });
     const requestOptions = {
+      mode: 'no-cors',
       method: 'POST',
       headers,
       body: JSON.stringify({
@@ -29,8 +31,11 @@ export default function Technologies() {
       }),
     };
     setLoading(true);
+    console.log(JSON.stringify({
+      website: websiteInfo.website,
+    }));
     const url = process.env.NEXT_PUBLIC_REST;
-    await fetch(`${url}/api/analyze`, requestOptions)
+    await fetch(`${url}/api/wappalyzer`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setData(result);
@@ -96,7 +101,7 @@ export default function Technologies() {
               <Card>
                 <h5 className="mb-2 font-bold text-2xl">
                   <Image
-                    src={`https://raw.githubusercontent.com/wappalyzer/wappalyzer/master/src/drivers/webextension/images/icons/${el.icon}`}
+                    src={`https://raw.githubusercontent.com/enthec/webappanalyzer/main/src/images/icons/${el.icon}`}
                     className="object-contain h-24 w-24"
                     width={0}
                     height={0}

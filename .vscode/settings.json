@@ -13,13 +13,6 @@
     "tailwindcss",
     "webp"
   ],
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.tslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
-  },
-  "eslint.validate": ["javascript"],
-  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": true},
   "eslint.alwaysShowStatus": true
 }

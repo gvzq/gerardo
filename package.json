@@ -21,7 +21,7 @@
     "react-icons": "^4.8.0",
     "react-joyride": "^2.5.3",
     "valid-url": "^1.0.9",
-    "wappalyzer": "^6.10.61"
+    "wappalyzer": "^6.10.66"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.3",
