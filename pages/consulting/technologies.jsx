@@ -31,9 +31,7 @@ export default function Technologies() {
       }),
     };
     setLoading(true);
-    console.log(JSON.stringify({
-      website: websiteInfo.website,
-    }));
+
     const url = process.env.NEXT_PUBLIC_REST;
     await fetch(`${url}/api/wappalyzer`, requestOptions)
       .then((response) => response.json())
@@ -52,14 +50,19 @@ export default function Technologies() {
     <div className="h-full">
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Identify technologies on your website</h2>
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+            Identify technologies on your website
+          </h2>
           <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
-            Find out the technology stack of your website.
-            We will recommend solutions given your needs.
+            Find out the technology stack of your website. We will recommend
+            solutions given your needs.
           </p>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
-              <label htmlFor="website" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              <label
+                htmlFor="website"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
                 Enter your website here:
                 <input
                   type="text"
@@ -73,65 +76,72 @@ export default function Technologies() {
               </label>
             </div>
             <div>
-              <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-
+              <button
+                type="submit"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
                 {isLoading ? (
                   <>
                     <Spinner aria-label="Spinner button example" />
-                    <span className="pl-3">
-                      Loading...
-                    </span>
+                    <span className="pl-3">Loading...</span>
                   </>
-                ) : 'Submit'}
-
+                ) : (
+                  'Submit'
+                )}
               </button>
             </div>
           </form>
         </div>
       </section>
 
-      {(data.technologies !== undefined && !isLoading) && (
-      <>
-        <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
-          {data.description}
-        </p>
-        <div className="container mx-auto p-6 grid grid-cols-3 gap-4">
-          {data?.technologies.map((el) => (
-            <div className="col-span-1 flex flex-col bg-white p-4" key={el.slug}>
-              <Card>
-                <h5 className="mb-2 font-bold text-2xl">
-                  <Image
-                    src={`https://raw.githubusercontent.com/enthec/webappanalyzer/main/src/images/icons/${el.icon}`}
-                    className="object-contain h-24 w-24"
-                    width={0}
-                    height={0}
-                    alt={`${el.name} Logo`}
-                    onError={({ currentTarget }) => {
-                      /* eslint no-param-reassign: "error" */
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = 'https://via.placeholder.com/150/FFFFFF/?text=Gera';
-                    }}
-                  />
-                  {el.name}
-                </h5>
-                <p className="font-normal text-md text-gray-700 dark:text-gray-400">
-                  {
-                (el?.description && el.description.length > 100)
-                  ? `${el.description.substring(0, 97)}...` : el.description
-                }
-                </p>
-                <div className="flex flex-wrap mt-auto pt-3 text-xs">
-                  {el.categories.map((category) => (
-                    <p className="mr-2 mb-2" key={`${el.name}-${category.name}`}>{category.name}</p>
-                  ))}
-                </div>
-              </Card>
-            </div>
-          ))}
-        </div>
-      </>
+      {data.technologies !== undefined && !isLoading && (
+        <>
+          <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+            {data.description}
+          </p>
+          <div className="container mx-auto p-6 grid grid-cols-3 gap-4">
+            {data?.technologies.map((el) => (
+              <div
+                className="col-span-1 flex flex-col bg-white p-4"
+                key={el.slug}
+              >
+                <Card>
+                  <h5 className="mb-2 font-bold text-2xl">
+                    <Image
+                      src={`https://raw.githubusercontent.com/enthec/webappanalyzer/main/src/images/icons/${el.icon}`}
+                      className="object-contain h-24 w-24"
+                      width={0}
+                      height={0}
+                      alt={`${el.name} Logo`}
+                      onError={({ currentTarget }) => {
+                        /* eslint no-param-reassign: "error" */
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = 'https://via.placeholder.com/150/FFFFFF/?text=Gera';
+                      }}
+                    />
+                    {el.name}
+                  </h5>
+                  <p className="font-normal text-md text-gray-700 dark:text-gray-400">
+                    {el?.description && el.description.length > 100
+                      ? `${el.description.substring(0, 97)}...`
+                      : el.description}
+                  </p>
+                  <div className="flex flex-wrap mt-auto pt-3 text-xs">
+                    {el.categories.map((category) => (
+                      <p
+                        className="mr-2 mb-2"
+                        key={`${el.name}-${category.name}`}
+                      >
+                        {category.name}
+                      </p>
+                    ))}
+                  </div>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </>
       )}
-
     </div>
   );
 }

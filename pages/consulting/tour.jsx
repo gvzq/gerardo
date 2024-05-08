@@ -1,31 +1,33 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import { Button } from 'flowbite-react';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import { Button } from "flowbite-react";
 
-const Joyride = dynamic(() => import('react-joyride'), { ssr: false });
+const Joyride = dynamic(() => import("react-joyride"), { ssr: false });
 
 export default function Tour() {
   const router = useRouter();
   let { company } = router.query;
 
   if (company) {
-    company = company.replaceAll('-', ' ').replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+    company = company
+      .replaceAll("-", " ")
+      .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
   }
 
   const [run, setRun] = useState(false);
 
   const steps = [
     {
-      content: 'Let\'s begin your UX journey!',
-      placement: 'center',
-      target: 'body',
+      content: "Let's begin your UX journey!",
+      placement: "center",
+      target: "body",
     },
     {
-      content: 'Step1',
-      placement: 'bottom',
-      title: 'Our projects',
-      target: '#step1',
+      content: "Step1",
+      placement: "bottom",
+      title: "Our projects",
+      target: "#step1",
     },
   ];
 
@@ -51,7 +53,7 @@ export default function Tour() {
         callback={handleJoyrideEnd}
       />
       <Button onClick={handleClickStart}>
-        {'Start '}
+        {"Start "}
         {company}
       </Button>
 
@@ -64,9 +66,7 @@ export default function Tour() {
       <div className="h-50">
         <h2>Step 3</h2>
       </div>
-      <div className="h-50">
-        Step 4
-      </div>
+      <div className="h-50">Step 4</div>
     </div>
   );
 }

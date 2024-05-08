@@ -1,15 +1,15 @@
 import React from 'react';
 import { Accordion } from 'flowbite-react';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FaLaptopCode } from 'react-icons/fa';
 import { VscProject } from 'react-icons/vsc';
 import { CgWebsite } from 'react-icons/cg';
 import PropTypes from 'prop-types';
 import HeroImage from '../../components/heroImage';
-import recording from '../../public/images/recording.webp';
-import heatmapArea from '../../public/images/heatmap-area.png';
-import heatmapClick from '../../public/images/heatmap-click.png';
+// import recording from '../../public/images/recording.webp';
+// import heatmapArea from '../../public/images/heatmap-area.png';
+// import heatmapClick from '../../public/images/heatmap-click.png';
 
 function AccordionLink({ href, text }) {
   return (
@@ -215,15 +215,16 @@ export default function Consulting() {
           </div>
         </div>
       </section>
-      <section className="py-20 bg-gray-300">
+      {/* <section className="py-20 bg-gray-300">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center">
             <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-              {/* <div className="text-gray-600 p-3 text-center
+              <div className="text-gray-600 p-3 text-center
               inline-flex items-center justify-center w-16 h-16
-               mb-6 shadow-lg rounded-full bg-gray-100">
+               mb-6 shadow-lg rounded-full bg-gray-100"
+              >
                 <i className="fas fa-user-friends text-xl" />
-              </div> */}
+              </div>
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
                 Click Heatmap
               </h3>
@@ -234,7 +235,10 @@ export default function Consulting() {
               </p>
             </div>
             <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
+              <div
+                className="relative flex flex-col
+                 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg"
+              >
                 <Image
                   className="w-full align-middle rounded-t-lg"
                   src={heatmapClick}
@@ -248,7 +252,10 @@ export default function Consulting() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center">
             <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
+              <div
+                className="relative flex flex-col
+                min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg"
+              >
                 <Image
                   className="max-w-full rounded-lg shadow-lg"
                   src={heatmapArea}
@@ -257,11 +264,12 @@ export default function Consulting() {
               </div>
             </div>
             <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-              {/* <div className="text-gray-600 p-3 text-center
+              <div className="text-gray-600 p-3 text-center
                inline-flex items-center justify-center
-                w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+                w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100"
+              >
                 <i className="fas fa-user-friends text-xl" />
-              </div> */}
+              </div>
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
                 Area Heatmap
               </h3>
@@ -273,8 +281,8 @@ export default function Consulting() {
             </div>
           </div>
         </div>
-      </section>
-      <section className="pb-20 block bg-gray-900">
+      </section> */}
+      {/* <section className="pb-20 block bg-gray-900">
         <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
           <div className="flex flex-wrap text-center justify-center">
             <div className="w-full lg:w-6/12 px-4">
@@ -295,7 +303,7 @@ export default function Consulting() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="h-50 py-16">
         <Questions />
       </section>
