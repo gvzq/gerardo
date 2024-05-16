@@ -12,7 +12,6 @@ import {
 } from 'react-icons/si';
 import { DiScrum, DiJavascript, DiGoogleAnalytics } from 'react-icons/di';
 import { TbBrandNextjs } from 'react-icons/tb';
-import HeroImage from '@/components/HeroImage';
 import innovation from '@/public/innovation-pipeline.jpeg';
 import ImageCard from '@/components/imageCard';
 
