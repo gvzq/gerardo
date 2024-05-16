@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Appointments } from '@/components/appointments';
+import { Appointment } from '@/components/appointment';
 
-export default function Appointment() {
+export default function AppointmentPage() {
   return (
     <div className="h-full">
-      <Appointments />
+      <Appointment />
     </div>
   );
 }
