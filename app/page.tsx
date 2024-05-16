@@ -312,7 +312,7 @@ function Process() {
         </div>
         <div className="relative">
           <Image
-            className="max-w-fit inset-0 object-cover object-bottom w-full rounded shadow-lg h-96 lg:absolute lg:h-full"
+            className="max-w-fit aspect-auto inset-0 object-contain object-center w-full rounded shadow-lg h-96 lg:absolute lg:h-full"
             src={innovation}
             alt="Innovation Pipeline"
           />

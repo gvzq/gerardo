@@ -7,8 +7,6 @@ import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import Nav from '@/components/navbar';
 import Footer from '@/components/footer';
-// import { icons } from 'lucide-react';
-
 
 export const metadata: Metadata = {
   title: 'Gerardo Vazquez',
@@ -31,12 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <Head>
+      {/* <head>
         <link rel="apple-touch-icon" sizes="180x180" href="https://gerardo.js.org/manifest/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="https://gerardo.js.org/manifest/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="https://gerardo.js.org/manifest/favicon-16x16.png" />
         <link rel="manifest" href="https://gerardo.js.org/manifest/site.webmanifest" />
-      </Head> */}
+      </head> */}
       <body className={inter.variable}>
         <nav>
           <Nav />

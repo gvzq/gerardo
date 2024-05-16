@@ -17,7 +17,7 @@ export default function Nav() {
       </Navbar.Brand>
       <div className="flex flex-1 justify-end md:order-2 px-3">
         <Button href="tel:+1(512)200-3641">
-          <BsTelephone className="mr-1" />
+          <BsTelephone className="mr-2" />
           (512) 200-3641
         </Button>
       </div>
