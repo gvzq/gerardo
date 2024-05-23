@@ -1,15 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { FaLaptopCode } from 'react-icons/fa';
-import { VscProject } from 'react-icons/vsc';
-import { CgWebsite } from 'react-icons/cg';
-import PropTypes from 'prop-types';
-import ImageCard from '@/components/imageCard';
-import {
-  Accordion,
-} from 'flowbite-react';
+import React from "react";
+import Link from "next/link";
+import { FaLaptopCode } from "react-icons/fa";
+import { VscProject } from "react-icons/vsc";
+import { CgWebsite } from "react-icons/cg";
+import PropTypes from "prop-types";
+import ImageCard from "@/components/imageCard";
+import { Accordion } from "flowbite-react";
 
 function AccordionLink({ href, text }: { href: string; text: string }) {
   return (
@@ -80,12 +78,12 @@ function Questions() {
                 product management certifications.
               </p>
               <p className="text-gray-500 dark:text-gray-400">
-                {'Check out my '}
+                {"Check out my "}
                 <AccordionLink
                   href="https://linkedin.com/in/gvzqz"
                   text="LinkedIn"
                 />
-                {' for a quick glance of my professional experience.'}
+                {" for a quick glance of my professional experience."}
               </p>
             </Accordion.Content>
           </Accordion.Panel>
@@ -95,31 +93,31 @@ function Questions() {
             </Accordion.Title>
             <Accordion.Content>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
-                We focus in the work the is most meaningful to you.
+                Gerardo focuses on the work that is most meaningful to you.
               </p>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Gerardo might start from looking at reducing costs or building
-                custom software.
+                He may start by identifying ways to reduce costs or by
+                developing custom software solutions tailored to your business
+                needs.
               </p>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Learn more about these technologies:
+                Learn more about some of the technologies Gerardo uses:
               </p>
               <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
                 <li>
                   <a
-                    href="https://flowbite.com/pro/"
+                    href="https://nextjs.org/"
                     className="text-blue-600 hover:underline dark:text-blue-500"
                   >
-                    Flowbite Pro
+                    Next.js
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://tailwindui.com/"
-                    rel="nofollow"
+                    href="https://vercel.com/"
                     className="text-blue-600 hover:underline dark:text-blue-500"
                   >
-                    Tailwind UI
+                    Vercel
                   </a>
                 </li>
               </ul>
@@ -137,15 +135,15 @@ export default function Consulting() {
         <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
           <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-              {'The '}
+              {"The "}
               <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
                 digital
               </span>
-              {' and '}
+              {" and "}
               <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
                 software
               </span>
-              {' expert for you.'}
+              {" expert for you."}
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               I will find the right solution for your needs
@@ -164,7 +162,7 @@ export default function Consulting() {
       <section className="pb-20 relative block bg-gray-900">
         <div
           className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-          style={{ height: '80px' }}
+          style={{ height: "80px" }}
         >
           <svg
             className="absolute bottom-0 overflow-hidden"
