@@ -19,5 +19,10 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true
 }

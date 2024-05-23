@@ -1,36 +1,38 @@
+'use client';
+
 import React from 'react';
 import { Navbar, Button } from 'flowbite-react';
 import { BsTelephone } from 'react-icons/bs';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 export default function Nav() {
-  const router = useRouter();
+  const path = usePathname();
+
   return (
     <Navbar fluid rounded className="p-3 bg-slate rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <Navbar.Brand href="/">
-        <span className="self-center whitespace-nowrap text-xl font-black dark:text-white">
+        <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
           GERA.
         </span>
       </Navbar.Brand>
-      <div className="flex md:order-2 gap-2">
+      <div className="flex flex-1 justify-end md:order-2 px-3">
         <Button href="tel:+1(512)200-3641">
-          <BsTelephone className="mr-1" />
-          {' '}
+          <BsTelephone className="mr-2" />
           (512) 200-3641
         </Button>
-        <Navbar.Toggle />
       </div>
+      <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link href="/" active={router.pathname === '/' ? 'active' : ''}>
+        <Navbar.Link href="/" active={path === '/' ? 'active' : ''}>
           Home
         </Navbar.Link>
-        <Navbar.Link href="/about" active={router.pathname.startsWith('/about') ? 'active' : ''}>
+        <Navbar.Link href="/about" active={path.startsWith('/about') ? 'active' : ''}>
           About
         </Navbar.Link>
-        {/* <Navbar.Link href="#services">
-          Services
+        <Navbar.Link href="/consulting">
+          Consulting
         </Navbar.Link>
-        <Navbar.Link href="#book-time">
+        {/* <Navbar.Link href="#book-time">
           Projects
         </Navbar.Link>
         <Navbar.Link href="#contact">
