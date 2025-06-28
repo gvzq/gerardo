@@ -29,6 +29,9 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_TARGET: github-pages
+      NODE_ENV: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -63,11 +66,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
+          node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          static_site_generator: next
 
       - name: Restore cache
         uses: actions/cache@v4
@@ -83,8 +88,26 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Build with Next.js for GitHub Pages
+        run: ${{ steps.detect-package-manager.outputs.runner }} run build
+
+      - name: Verify build output
+        run: |
+          echo "Checking if out directory exists..."
+          if [ -d "./out" ]; then
+            echo "✅ out directory exists"
+            echo "Contents of out directory:"
+            ls -la ./out
+          else
+            echo "❌ out directory does not exist"
+            echo "Contents of current directory:"
+            ls -la ./
+            echo "Checking .next directory:"
+            if [ -d "./.next" ]; then
+              ls -la ./.next
+            fi
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

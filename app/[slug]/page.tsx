@@ -13,31 +13,60 @@ interface PageProps {
   };
 }
 
-// Generate static params for all non-conflicting Ghost pages
+// Generate static params only for static builds (GitHub Pages)
+// For Vercel, allow dynamic generation
 export async function generateStaticParams() {
-  try {
-    const pages = await getNonConflictingPages();
-    console.log(
-      "Generated static params for pages:",
-      pages.map((p) => p.slug)
-    );
-    return pages.map((page) => ({
-      slug: page.slug,
-    }));
-  } catch (error) {
-    console.error("Error generating static params:", error);
-    return [];
+  console.log("🚀 generateStaticParams called");
+  console.log("Environment variables:", {
+    DEPLOY_TARGET: process.env.DEPLOY_TARGET,
+    NODE_ENV: process.env.NODE_ENV,
+    GHOST_URL: process.env.GHOST_URL,
+    hasGhostKey: !!process.env.GHOST_CONTENT_API_KEY,
+  });
+
+  // Only generate static params for GitHub Pages deployment
+  if (process.env.DEPLOY_TARGET === "github-pages") {
+    console.log("📦 Building for GitHub Pages - generating static params");
+    try {
+      const pages = await getNonConflictingPages();
+      const staticParams = pages.map((page) => ({
+        slug: page.slug,
+      }));
+
+      console.log("✅ Generated static params for GitHub Pages:", staticParams);
+      return staticParams;
+    } catch (error) {
+      console.error(
+        "❌ Error generating static params for GitHub Pages:",
+        error
+      );
+      return [];
+    }
   }
+
+  // For Vercel deployment, return empty array to enable dynamic generation
+  console.log(
+    "⚡ Building for Vercel - enabling dynamic generation (no static params)"
+  );
+  return [];
 }
+
+// Enable dynamic params for Vercel deployment
+export const dynamicParams = true;
 
 // Generate metadata for the page
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
+  console.log(`🎯 generateMetadata called for slug: "${params.slug}"`);
+
   const { slug } = params;
 
   // Skip if slug conflicts with existing routes
   if (isSlugConflict(slug)) {
+    console.log(
+      `⚠️ Slug "${slug}" conflicts with existing routes - returning 404 metadata`
+    );
     return {
       title: "Page Not Found",
     };
@@ -47,12 +76,15 @@ export async function generateMetadata({
     const page = await getSinglePage(slug);
 
     if (!page) {
+      console.log(
+        `❌ Page with slug "${slug}" not found in Ghost CMS - returning 404 metadata`
+      );
       return {
         title: "Page Not Found",
       };
     }
 
-    return {
+    const metadata = {
       title: page.title || "Ghost Page",
       description: page.excerpt || `${page.title || "Ghost Page"} - Ghost Page`,
       openGraph: {
@@ -62,8 +94,11 @@ export async function generateMetadata({
         images: page.feature_image ? [page.feature_image] : [],
       },
     };
+
+    console.log(`✅ Generated metadata for "${slug}":`, metadata);
+    return metadata;
   } catch (error) {
-    console.error("Error generating metadata:", error);
+    console.error(`❌ Error generating metadata for "${slug}":`, error);
     return {
       title: "Page Not Found",
     };
@@ -71,11 +106,15 @@ export async function generateMetadata({
 }
 
 export default async function GhostPage({ params }: PageProps) {
+  console.log(`🎯 GhostPage component called for slug: "${params.slug}"`);
+
   const { slug } = params;
 
   // Skip if slug conflicts with existing routes
   if (isSlugConflict(slug)) {
-    console.log(`Slug "${slug}" conflicts with existing routes`);
+    console.log(
+      `⚠️ Slug "${slug}" conflicts with existing routes - calling notFound()`
+    );
     notFound();
   }
 
@@ -83,9 +122,18 @@ export default async function GhostPage({ params }: PageProps) {
     const page = await getSinglePage(slug);
 
     if (!page) {
-      console.log(`Page with slug "${slug}" not found in Ghost CMS`);
+      console.log(
+        `❌ Page with slug "${slug}" not found in Ghost CMS - calling notFound()`
+      );
       notFound();
     }
+
+    console.log(`✅ Successfully rendering page "${slug}":`, {
+      title: page.title,
+      hasFeatureImage: !!page.feature_image,
+      hasHtml: !!page.html,
+      htmlLength: page.html?.length || 0,
+    });
 
     return (
       <article className="gh-article post">
@@ -110,7 +158,7 @@ export default async function GhostPage({ params }: PageProps) {
       </article>
     );
   } catch (error) {
-    console.error("Error fetching Ghost page:", error);
+    console.error(`❌ Error rendering Ghost page "${slug}":`, error);
     notFound();
   }
 }

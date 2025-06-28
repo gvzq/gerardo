@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export for GitHub Pages deployment
+  // Enable static export only for GitHub Pages deployment
   ...(process.env.DEPLOY_TARGET === "github-pages" && {
     output: "export",
     trailingSlash: true,
@@ -8,15 +8,11 @@ const nextConfig = {
     // basePath: "/your-repo-name",
   }),
 
-  // Keep existing production export for backward compatibility
-  ...(process.env.NODE_ENV === "production" &&
-    process.env.DEPLOY_TARGET !== "github-pages" && {
-      output: "export",
-    }),
-
+  // Remove static export for production builds on Vercel
+  // This allows serverless functions to work for dynamic page generation
   images: { unoptimized: true },
 
-  // Disable server-side features when building for GitHub Pages
+  // Disable server-side features only when building for GitHub Pages
   ...(process.env.DEPLOY_TARGET === "github-pages" && {
     // Ensure no server-side features are used in static export
     experimental: {
