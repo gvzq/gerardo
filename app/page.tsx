@@ -1,19 +1,32 @@
-import React from 'react';
-import { Button } from 'flowbite-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { BsWordpress, BsFillLightningChargeFill } from 'react-icons/bs';
+import React from "react";
+import { Button } from "flowbite-react";
+import Image from "next/image";
+import Link from "next/link";
+import { BsWordpress, BsFillLightningChargeFill } from "react-icons/bs";
 import {
-  FaServer, FaAws, FaReact, FaAngular, FaNodeJs, FaGithub, FaElementor, FaSlack,
-} from 'react-icons/fa';
+  FaServer,
+  FaAws,
+  FaReact,
+  FaAngular,
+  FaNodeJs,
+  FaGithub,
+  FaElementor,
+  FaSlack,
+} from "react-icons/fa";
+import { VscAzure } from "react-icons/vsc";
+import { TbBrandTeams } from "react-icons/tb";
+
 import {
-  SiGooglecloud, SiMicrosoftazure, SiVercel,
-  SiGatsby, SiHubspot, SiJira, SiMicrosoftteams,
-} from 'react-icons/si';
-import { DiScrum, DiJavascript, DiGoogleAnalytics } from 'react-icons/di';
-import { TbBrandNextjs } from 'react-icons/tb';
-import innovation from '@/public/innovation-pipeline.jpeg';
-import ImageCard from '@/components/imageCard';
+  SiGooglecloud,
+  SiVercel,
+  SiGatsby,
+  SiHubspot,
+  SiJira,
+} from "react-icons/si";
+import { DiScrum, DiJavascript, DiGoogleAnalytics } from "react-icons/di";
+import { TbBrandNextjs } from "react-icons/tb";
+import innovation from "@/public/innovation-pipeline.jpeg";
+import ImageCard from "@/components/imageCard";
 
 function CallToAction() {
   return (
@@ -35,7 +48,8 @@ function Header() {
           I&apos;m here to help you
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
-          I design effective websites, develop the best solution, and I measure the impact.
+          I design effective websites, develop the best solution, and I measure
+          the impact.
         </p>
         <div className="grid place-items-center my-4">
           <CallToAction />
@@ -49,11 +63,21 @@ function Quote() {
     <section className="bg-gray-200 dark:bg-gray-800">
       <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
         <figure className="max-w-screen-md mx-auto">
-          <svg className="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" />
+          <svg
+            className="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600"
+            viewBox="0 0 24 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+              fill="currentColor"
+            />
           </svg>
           <blockquote>
-            <p className="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">&quot;First, solve the problem. Then write the code.&quot;</p>
+            <p className="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">
+              &quot;First, solve the problem. Then write the code.&quot;
+            </p>
           </blockquote>
           {/* <figcaption className="flex items-center justify-center mt-6 space-x-3">
             <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture" />
@@ -79,9 +103,9 @@ function Features() {
           </div>
           <h6 className="mb-3 text-xl font-bold leading-5">JavaScript</h6>
           <p className="mb-3 text-sm text-gray-900">
-            JavaScript is a programming language used in 98% on the client side in websites,
-            and could be used in servers as well.
-            Gerardo has experience with React, Gatsby, Next, Node, and Angular.
+            JavaScript is a programming language used in 98% on the client side
+            in websites, and could be used in servers as well. Gerardo has
+            experience with React, Gatsby, Next, Node, and Angular.
           </p>
           <p className="flex space-x-2 items-center justify-center">
             <TbBrandNextjs />
@@ -97,14 +121,14 @@ function Features() {
           </div>
           <h6 className="mb-3 text-xl font-bold leading-5">Cloud</h6>
           <p className="mb-3 text-sm text-gray-900">
-            Cloud computing is the on-demand delivery with pay-as-you-go pricing.
-            Gerardo has experience in AWS, GCP, Vercel, and Azure.
+            Cloud computing is the on-demand delivery with pay-as-you-go
+            pricing. Gerardo has experience in AWS, GCP, Vercel, and Azure.
           </p>
           <p className="flex space-x-2 items-center justify-center">
             <FaAws />
             <SiGooglecloud />
             <SiVercel />
-            <SiMicrosoftazure />
+            <VscAzure />
           </p>
         </div>
         <div className="max-w-md sm:mx-auto sm:text-center">
@@ -113,11 +137,10 @@ function Features() {
           </div>
           <h6 className="mb-3 text-xl font-bold leading-5">Wordpress</h6>
           <p className="mb-3 text-sm text-gray-900">
-            WordPress is a content management system and
-            powers over 43.3% of all the websites on the Internet.
-            Gerardo has experience with Elementor, Hubspot,
-            Search Engine Optimization (SEO), Accelerated Mobile Pages (AMP),
-            Page Analytics, and Cache Plugins.
+            WordPress is a content management system and powers over 43.3% of
+            all the websites on the Internet. Gerardo has experience with
+            Elementor, Hubspot, Search Engine Optimization (SEO), Accelerated
+            Mobile Pages (AMP), Page Analytics, and Cache Plugins.
           </p>
           <p className="flex space-x-2 items-center justify-center">
             <FaElementor />
@@ -134,15 +157,15 @@ function Features() {
             Agile Product Management
           </h6>
           <p className="mb-3 text-sm text-gray-900">
-            Agile is an iterative project management approach that
-            delivers value faster and with fewer errors.
-            Gerardo utilizes tools including but not limiting to
-            Git, Jira, Github, Microsoft Teams, or Slack to respond to change quickly.
+            Agile is an iterative project management approach that delivers
+            value faster and with fewer errors. Gerardo utilizes tools including
+            but not limiting to Git, Jira, Github, Microsoft Teams, or Slack to
+            respond to change quickly.
           </p>
           <p className="flex space-x-2 items-center justify-center">
             <FaGithub />
             <SiJira />
-            <SiMicrosoftteams />
+            <TbBrandTeams />
             <FaSlack />
           </p>
         </div>
@@ -157,7 +180,9 @@ function Process() {
       id="services"
     >
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-extrabold tracking-tight  text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">How can I help?</h2>
+        <h2 className="text-3xl font-extrabold tracking-tight  text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
+          How can I help?
+        </h2>
         <p className="text-base text-gray-700 md:text-lg">
           I&apos;m ready to contribute and accelerate your efforts.
         </p>
@@ -199,8 +224,8 @@ function Process() {
             <div className="pt-1 pb-8">
               <p className="mb-2 text-lg font-bold">Step 1: Ask Questions</p>
               <p className="text-gray-700">
-                People always describe who they want to be rather than who they are.
-                Let&apos;s get into specifics.
+                People always describe who they want to be rather than who they
+                are. Let&apos;s get into specifics.
               </p>
             </div>
           </div>
@@ -235,10 +260,12 @@ function Process() {
               <div className="w-px h-full bg-gray-300" />
             </div>
             <div className="pt-1 pb-8">
-              <p className="mb-2 text-lg font-bold">Step 2: Define Value Propositions</p>
+              <p className="mb-2 text-lg font-bold">
+                Step 2: Define Value Propositions
+              </p>
               <p className="text-gray-700">
-                What are the things you really care and want?
-                Let&apos;s narrow the definition of your customer profile.
+                What are the things you really care and want? Let&apos;s narrow
+                the definition of your customer profile.
               </p>
             </div>
           </div>
@@ -273,11 +300,13 @@ function Process() {
               <div className="w-px h-full bg-gray-300" />
             </div>
             <div className="pt-1 pb-8">
-              <p className="mb-2 text-lg font-bold">Step 3: Measure Accurately</p>
+              <p className="mb-2 text-lg font-bold">
+                Step 3: Measure Accurately
+              </p>
               <p className="text-gray-700">
-                It&apos;s essential for developing a truly useful and
-                enjoyable product with an excellent user experience.
-                Let&apos;s create a strategy.
+                It&apos;s essential for developing a truly useful and enjoyable
+                product with an excellent user experience. Let&apos;s create a
+                strategy.
               </p>
             </div>
           </div>

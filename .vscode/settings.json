@@ -11,6 +11,7 @@
     "postbuild",
     "roadmap",
     "tailwindcss",
+    "tryghost",
     "webp"
   ],
   "editor.codeActionsOnSave": {
