@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Card } from "flowbite-react";
 import Image from "next/image";
+import { analyzeWebsiteBasic, analyzeWebsiteEnhanced } from "@/lib/actions.js";
 
 export default function Technologies() {
   const [data, setData] = useState({});
@@ -46,29 +47,23 @@ export default function Technologies() {
     setData({});
 
     try {
-      const endpoint =
-        analysisMode === "enhanced" ? "/api/analyze" : "/api/wappalyzer";
+      let result;
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          website: websiteInfo.website.trim(),
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to analyze website");
+      // Use server actions instead of API calls
+      if (analysisMode === "enhanced") {
+        result = await analyzeWebsiteEnhanced(websiteInfo.website.trim());
+      } else {
+        result = await analyzeWebsiteBasic(websiteInfo.website.trim());
       }
 
-      const result = await response.json();
-      setData(result);
+      if (result.success) {
+        setData(result.data);
+      } else {
+        setError(result.error || "Failed to analyze website");
+      }
     } catch (err) {
       console.error("Analysis error:", err);
-      setError(err.message || "Failed to analyze website. Please try again.");
+      setError("Failed to analyze website. Please try again.");
     } finally {
       setLoading(false);
     }
