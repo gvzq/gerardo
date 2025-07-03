@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getPages, getPosts, isSlugConflict } from "@/lib/ghost";
+import { createLogger } from "@/lib/utils";
+
+const log = createLogger("sitemap");
 
 // Force dynamic evaluation - don't cache this sitemap
 export const revalidate = 0;
@@ -64,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [...staticRoutes, ...pageRoutes, ...blogRoutes];
   } catch (error) {
-    console.error("Error fetching Ghost content for sitemap:", error);
+    log.error({ error }, "Error fetching Ghost content for sitemap");
     // Return only static routes if Ghost CMS is unavailable
     return staticRoutes;
   }

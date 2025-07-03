@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getPosts, formatPostDate, type GhostPost } from "@/lib/ghost";
+import { createLogger } from "@/lib/utils";
+
+const log = createLogger("blog-listing");
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,11 +16,14 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  console.log("🎯 BlogPage component called");
+  log.debug("🎯 BlogPage component called");
 
   try {
     const posts = await getPosts();
-    console.log(`✅ Successfully fetched ${posts.length} posts from Ghost CMS`);
+    log.info(
+      { postCount: posts.length },
+      "✅ Successfully fetched posts from Ghost CMS"
+    );
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -106,7 +112,7 @@ export default async function BlogPage() {
       </div>
     );
   } catch (error) {
-    console.error("❌ Error fetching posts:", error);
+    log.error({ error }, "❌ Error fetching posts");
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">

@@ -1,4 +1,7 @@
 import GhostContentAPI from "@tryghost/content-api";
+import { createLogger } from "./utils";
+
+const log = createLogger("ghost-cms");
 
 // Type definitions for Ghost Content API
 interface GhostPage {
@@ -51,7 +54,7 @@ export async function getPages(): Promise<GhostPage[]> {
       limit: "all",
     })
     .catch((err: any) => {
-      console.error(err);
+      log.error({ error: err }, "Failed to fetch Ghost pages");
       return [];
     });
 }
@@ -65,7 +68,7 @@ export async function getSinglePage(
       slug: pageSlug,
     })
     .catch((err: any) => {
-      console.error(err);
+      log.error({ error: err }, "Failed to fetch Ghost page");
       return null;
     });
 }
@@ -96,7 +99,7 @@ export async function getPosts(): Promise<GhostPost[]> {
       limit: "all",
     })
     .catch((err: any) => {
-      console.error(err);
+      log.error({ error: err }, "Failed to fetch Ghost posts");
       return [];
     })) as GhostPost[];
 }
@@ -110,7 +113,7 @@ export async function getSinglePost(
       slug: postSlug,
     })
     .catch((err: any) => {
-      console.error(err);
+      log.error({ error: err }, "Failed to fetch Ghost post");
       return null;
     })) as GhostPost | null;
 }

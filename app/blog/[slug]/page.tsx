@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getSinglePost, getPosts, formatPostDate } from "@/lib/ghost";
+import { createLogger } from "@/lib/utils";
+
+const log = createLogger("blog-post");
 import NewsletterSignup from "@/components/newsletter-signup";
 
 interface BlogPostProps {
@@ -13,11 +16,11 @@ interface BlogPostProps {
 
 // Generate static params for static builds
 export async function generateStaticParams() {
-  console.log("🚀 generateStaticParams called for blog posts");
+  log.debug("🚀 generateStaticParams called for blog posts");
 
   // Only generate static params for GitHub Pages deployment
   if (process.env.DEPLOY_TARGET === "github-pages") {
-    console.log(
+    log.info(
       "📦 Building for GitHub Pages - generating static params for blog posts"
     );
     try {
@@ -26,16 +29,16 @@ export async function generateStaticParams() {
         slug: post.slug,
       }));
 
-      console.log("✅ Generated static params for blog posts:", staticParams);
+      log.info({ staticParams }, "✅ Generated static params for blog posts");
       return staticParams;
     } catch (error) {
-      console.error("❌ Error generating static params for blog posts:", error);
+      log.error({ error }, "❌ Error generating static params for blog posts");
       return [];
     }
   }
 
   // For Vercel deployment, return empty array to enable dynamic generation
-  console.log(
+  log.debug(
     "⚡ Building for Vercel - enabling dynamic generation for blog posts"
   );
   return [];
@@ -49,14 +52,15 @@ export async function generateMetadata({
   params,
 }: BlogPostProps): Promise<Metadata> {
   const { slug } = await params;
-  console.log(`🎯 generateMetadata called for blog post: "${slug}"`);
+  log.debug({ slug }, "🎯 generateMetadata called for blog post");
 
   try {
     const post = await getSinglePost(slug);
 
     if (!post) {
-      console.log(
-        `❌ Blog post with slug "${slug}" not found in Ghost CMS - returning 404 metadata`
+      log.warn(
+        { slug },
+        "❌ Blog post not found in Ghost CMS - returning 404 metadata"
       );
       return {
         title: "Post Not Found",
@@ -75,13 +79,10 @@ export async function generateMetadata({
       },
     };
 
-    console.log(`✅ Generated metadata for blog post "${slug}":`, metadata);
+    log.info({ slug, metadata }, "✅ Generated metadata for blog post");
     return metadata;
   } catch (error) {
-    console.error(
-      `❌ Error generating metadata for blog post "${slug}":`,
-      error
-    );
+    log.error({ slug, error }, "❌ Error generating metadata for blog post");
     return {
       title: "Post Not Found",
     };
@@ -90,24 +91,29 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostProps) {
   const { slug } = await params;
-  console.log(`🎯 BlogPostPage component called for slug: "${slug}"`);
+  log.debug({ slug }, "🎯 BlogPostPage component called");
 
   try {
     const post = await getSinglePost(slug);
 
     if (!post) {
-      console.log(
-        `❌ Blog post with slug "${slug}" not found in Ghost CMS - calling notFound()`
+      log.warn(
+        { slug },
+        "❌ Blog post not found in Ghost CMS - calling notFound()"
       );
       notFound();
     }
 
-    console.log(`✅ Successfully rendering blog post "${slug}":`, {
-      title: post.title,
-      hasFeatureImage: !!post.feature_image,
-      hasHtml: !!post.html,
-      htmlLength: post.html?.length || 0,
-    });
+    log.info(
+      {
+        slug,
+        title: post.title,
+        hasFeatureImage: !!post.feature_image,
+        hasHtml: !!post.html,
+        htmlLength: post.html?.length || 0,
+      },
+      "✅ Successfully rendering blog post"
+    );
 
     return (
       <article className="max-w-4xl mx-auto px-4 py-8">
@@ -206,7 +212,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
       </article>
     );
   } catch (error) {
-    console.error(`❌ Error rendering blog post "${slug}":`, error);
+    log.error({ slug, error }, "❌ Error rendering blog post");
     notFound();
   }
 }
