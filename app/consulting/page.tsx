@@ -37,11 +37,11 @@ function Questions() {
             </Accordion.Title>
             <Accordion.Content>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Yes, we can have an initial exploratory call to access what
+                Yes, we can have an initial exploratory call to assess what
                 areas of your business need attention.
               </p>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Together we will prioritize the work that need to happen today,
+                Together we will prioritize the work that needs to happen today,
                 and lay out a roadmap for iterative improvements.
               </p>
             </Accordion.Content>
@@ -56,7 +56,7 @@ function Questions() {
               </p>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
                 We have a subscription model so you will never have any billing
-                surprises. This way we challenge ourselves to provide continuos
+                surprises. This way we challenge ourselves to provide continuous
                 value.
               </p>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -71,8 +71,9 @@ function Questions() {
             <Accordion.Content>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
                 Gerardo is a Texas A&M alumni and a S&P 500 software engineer.
-                He has a computer science bachelors of science degree and a
-                business minor.
+                He has a computer science bachelor&apos;s of science degree and
+                a business minor. He used to work in innovation and product
+                management.
               </p>
               <p className="mb-2 text-gray-500 dark:text-gray-400">
                 He has more than 5 years of experience building websites and
@@ -147,7 +148,7 @@ export default function Consulting() {
               {" expert for you."}
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              I will find the right solution for your needs
+              I will find the right digital solution for your business needs
             </p>
             <Link href="https://zcal.co/gerardo/consulting">
               <span className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
@@ -161,32 +162,12 @@ export default function Consulting() {
         </div>
       </div>
       <section className="pb-20 relative block bg-gray-900">
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-          style={{ height: "80px" }}
-        >
-          <svg
-            className="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon
-              className="text-gray-900 fill-current"
-              points="2560 0 2560 100 0 100"
-            />
-          </svg>
-        </div>
-        <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
+        <div className="container mx-auto px-4 lg:pt-24 lg:pb-24">
           <div className="flex flex-wrap text-center justify-center">
             <div className="w-full lg:w-6/12 px-4">
               <h2 className="text-4xl font-semibold text-white">Services</h2>
               <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-                Our team will collaborate with you to develop a plan for
-                success.
+                I will collaborate with you to develop a plan for success.
               </p>
             </div>
           </div>
@@ -201,7 +182,7 @@ export default function Consulting() {
               <p className="mt-2 mb-4 text-gray-500">
                 Harness the power of modern website development. Differentiate
                 your company. Redesign your product for better performance and
-                efficiency We help you plan, design, and develop, end-to-end.
+                efficiency. I help you plan, design, and develop, end-to-end.
               </p>
             </div>
             <div className="w-full lg:w-3/12 px-4 text-center">
@@ -225,7 +206,7 @@ export default function Consulting() {
                 Custom Software
               </h5>
               <p className="mt-2 mb-4 text-gray-500">
-                Analyze your software needs and create technology to help the
+                Analyze your software needs and create technology to help your
                 operations. Collaborate to build software that solves business
                 problems.
               </p>

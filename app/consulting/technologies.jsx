@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card } from "flowbite-react";
+
 import Image from "next/image";
 import { analyzeWebsiteBasic, analyzeWebsiteEnhanced } from "@/lib/actions.js";
 
@@ -10,6 +10,7 @@ export default function Technologies() {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [analysisMode, setAnalysisMode] = useState("basic"); // "basic" or "enhanced"
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [websiteInfo, setWebsiteInfo] = useState({
     website: "",
   });
@@ -58,6 +59,7 @@ export default function Technologies() {
 
       if (result.success) {
         setData(result.data);
+        setSelectedCategories([]); // Reset category filters on new analysis
       } else {
         setError(result.error || "Failed to analyze website");
       }
@@ -89,8 +91,30 @@ export default function Technologies() {
     }
   };
 
+  const toggleCategory = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((cat) => cat !== category)
+        : [...prev, category]
+    );
+  };
+
+  const getFilteredTechnologies = () => {
+    if (!data.technologies) return [];
+
+    if (selectedCategories.length === 0) {
+      return data.technologies;
+    }
+
+    return data.technologies.filter((tech) =>
+      tech.categories.some((category) =>
+        selectedCategories.includes(category.name || category)
+      )
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-48 bg-gray-50 dark:bg-gray-900">
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
@@ -102,11 +126,11 @@ export default function Technologies() {
             decisions.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="space-y-3">
               <label
                 htmlFor="website"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Website URL
               </label>
@@ -117,7 +141,7 @@ export default function Technologies() {
                 placeholder="https://example.com"
                 value={websiteInfo.website}
                 onChange={handleUpdate}
-                className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors"
                 disabled={isLoading}
               />
               {error && (
@@ -127,33 +151,33 @@ export default function Technologies() {
               )}
             </div>
 
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <div className="space-y-4">
+              <label className="block text-sm font-medium text-gray-900 dark:text-white">
                 Analysis Type
               </label>
-              <div className="flex space-x-4">
-                <label className="flex items-center">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <label className="flex items-center cursor-pointer">
                   <input
                     type="radio"
                     name="analysisMode"
                     value="basic"
                     checked={analysisMode === "basic"}
                     onChange={(e) => setAnalysisMode(e.target.value)}
-                    className="mr-2"
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     disabled={isLoading}
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">
                     Basic Analysis
                   </span>
                 </label>
-                <label className="flex items-center">
+                <label className="flex items-center cursor-pointer">
                   <input
                     type="radio"
                     name="analysisMode"
                     value="enhanced"
                     checked={analysisMode === "enhanced"}
                     onChange={(e) => setAnalysisMode(e.target.value)}
-                    className="mr-2"
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     disabled={isLoading}
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -163,13 +187,15 @@ export default function Technologies() {
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={isLoading || !websiteInfo.website.trim()}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? <LoadingSpinner /> : "Analyze Website"}
-            </button>
+            <div className="pt-4">
+              <button
+                type="submit"
+                disabled={isLoading || !websiteInfo.website.trim()}
+                className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {isLoading ? <LoadingSpinner /> : "Analyze Website"}
+              </button>
+            </div>
           </form>
         </div>
       </section>
@@ -194,135 +220,293 @@ export default function Technologies() {
               )}
             </div>
 
-            {/* Recommendations Section */}
-            {data.insights && data.insights.length > 0 && (
-              <div className="mb-8">
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-                  Recommendations
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {data.insights.map((insight, index) => (
-                    <Card key={index} className="p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <h5 className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {insight.type}
-                        </h5>
-                        <span
-                          className={`px-2 py-1 text-xs font-medium rounded-full ${getImpactColor(
-                            insight.impact
-                          )}`}
-                        >
-                          {insight.impact} Impact
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        {insight.suggestion}
-                      </p>
-                    </Card>
-                  ))}
+            {/* AI Insights Section */}
+            {data.insights &&
+              Array.isArray(data.insights) &&
+              data.insights.length > 0 && (
+                <div className="mb-8">
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+                    Insights & Recommendations
+                  </h4>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border">
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                      <span className="inline-flex items-center px-3 py-1 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                        AI Generated
+                      </span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        Based on {data.technologies.length} technologies across{" "}
+                        {data.categories.length} categories
+                      </span>
+                      {data.categories && data.categories.length > 0 && (
+                        <div className="flex flex-wrap gap-1 ml-2">
+                          {data.categories
+                            .slice(0, 3)
+                            .map((category, catIndex) => (
+                              <span
+                                key={catIndex}
+                                className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-400"
+                              >
+                                {category}
+                              </span>
+                            ))}
+                          {data.categories.length > 3 && (
+                            <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-500 bg-gray-50 rounded-full dark:bg-gray-800 dark:text-gray-500">
+                              +{data.categories.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <div className="space-y-8">
+                      {data.insights.map((insight, index) => (
+                        <div key={index} className="flex items-start gap-4">
+                          <div className="h-2 w-2 rounded-full bg-primary mt-3 flex-shrink-0"></div>
+                          <div className="flex-1 space-y-3">
+                            <div className="flex items-start justify-between gap-4">
+                              <h5 className="text-lg font-semibold leading-tight tracking-tight">
+                                {insight.type}
+                              </h5>
+                              <span
+                                className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getImpactColor(
+                                  insight.impact
+                                )}`}
+                              >
+                                {insight.impact} Impact
+                              </span>
+                            </div>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              {insight.suggestion}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {data.technologies.map((tech) => (
-                <div key={tech.slug} className="h-full">
-                  <Card className="h-full flex flex-col">
-                    <div className="flex items-center mb-4">
-                      <div className="w-12 h-12 mr-3 flex-shrink-0">
-                        <Image
-                          src={`https://raw.githubusercontent.com/enthec/webappanalyzer/main/src/images/icons/${tech.icon}`}
-                          className="object-contain w-full h-full"
-                          width={48}
-                          height={48}
-                          alt={`${tech.name} Logo`}
-                          onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src = `/api/fallback-icon?text=${encodeURIComponent(
-                              tech.name.charAt(0)
-                            )}&size=48&bg=E5E7EB&color=6B7280`;
-                          }}
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="text-lg font-bold text-gray-900 dark:text-white">
-                          {tech.name}
-                        </h5>
-                        <div className="flex items-center">
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
-                            Confidence: {tech.confidence}%
-                          </span>
-                          <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                            <div
-                              className="bg-blue-600 h-1.5 rounded-full"
-                              style={{ width: `${tech.confidence}%` }}
-                            ></div>
+            <div className="mb-8">
+              {data.categories && data.categories.length > 0 && (
+                <div className="mt-12 text-center">
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                    Technology Categories Found
+                  </h4>
+
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {data.categories.map((category) => {
+                      const isSelected = selectedCategories.includes(category);
+                      return (
+                        <button
+                          key={category}
+                          onClick={() => toggleCategory(category)}
+                          className={`inline-flex items-center px-3 py-1 text-sm font-medium rounded-full cursor-pointer hover:scale-105 transform transition-all ${
+                            isSelected
+                              ? "bg-blue-600 text-white dark:bg-blue-500"
+                              : "text-gray-800 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                          }`}
+                        >
+                          {category}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Technologies count and grid */}
+            <div className="mb-4">
+              <div className="flex justify-center items-center gap-2 flex-wrap">
+                <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+                  Showing {getFilteredTechnologies().length} of{" "}
+                  {data.technologies?.length || 0} technologies
+                  {selectedCategories.length > 0 && (
+                    <span className="ml-1">
+                      (filtered by: {selectedCategories.join(", ")})
+                    </span>
+                  )}
+                </p>
+                {selectedCategories.length > 0 && (
+                  <button
+                    onClick={() => setSelectedCategories([])}
+                    className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 dark:text-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-full transition-colors ml-2 border border-gray-300 dark:border-gray-500"
+                  >
+                    <svg
+                      className="w-3 h-3 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                    Clear filters
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gridAutoRows: "1fr",
+              }}
+            >
+              {getFilteredTechnologies()
+                .sort((a, b) => {
+                  // Sort technologies with best practices first
+                  const aHasBestPractices =
+                    a.bestPractices && a.bestPractices.length > 0;
+                  const bHasBestPractices =
+                    b.bestPractices && b.bestPractices.length > 0;
+
+                  if (aHasBestPractices && !bHasBestPractices) return -1;
+                  if (!aHasBestPractices && bHasBestPractices) return 1;
+                  return 0; // Keep original order for items in same category
+                })
+                .map((tech) => (
+                  <div key={tech.slug} className="w-full h-full">
+                    <div className="h-full flex flex-col w-full bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 mr-3 flex-shrink-0">
+                          <Image
+                            src={`https://raw.githubusercontent.com/enthec/webappanalyzer/main/src/images/icons/${tech.icon}`}
+                            className="object-contain w-full h-full"
+                            width={48}
+                            height={48}
+                            alt={`${tech.name} Logo`}
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src = `/api/fallback-icon?text=${encodeURIComponent(
+                                tech.name.charAt(0)
+                              )}&size=48&bg=E5E7EB&color=6B7280`;
+                            }}
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="text-lg font-bold text-gray-900 dark:text-white">
+                            {tech.name}
+                          </h5>
+                          <div className="flex items-center">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">
+                              Confidence: {tech.confidence}%
+                            </span>
+                            <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                              <div
+                                className="bg-blue-600 h-1.5 rounded-full"
+                                style={{ width: `${tech.confidence}%` }}
+                              ></div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 flex-grow">
-                      {tech.description && tech.description.length > 100
-                        ? `${tech.description.substring(0, 97)}...`
-                        : tech.description || "No description available"}
-                    </p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 flex-grow leading-relaxed">
+                        {tech.description || "No description available"}
+                      </p>
 
-                    <div className="flex flex-wrap gap-1 mt-auto">
-                      {tech.categories.map((category) => (
-                        <span
-                          key={`${tech.name}-${category.name}`}
-                          className="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
-                        >
-                          {category.name}
-                        </span>
-                      ))}
+                      {/* Best Practices Section for this technology */}
+                      {tech.bestPractices && tech.bestPractices.length > 0 && (
+                        <div className="mb-4">
+                          <h6 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                            Best Practices
+                          </h6>
+                          <div className="grid grid-cols-1 gap-3">
+                            {tech.bestPractices.map(
+                              (practice, practiceIndex) => (
+                                <div
+                                  key={practiceIndex}
+                                  className="p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm border"
+                                >
+                                  <div className="flex items-start justify-between mb-2">
+                                    <h6 className="text-sm font-semibold text-gray-900 dark:text-white">
+                                      {practice.title}
+                                    </h6>
+                                    <span
+                                      className={`px-2 py-1 text-xs font-medium rounded-full ${getImpactColor(
+                                        practice.priority
+                                      )}`}
+                                    >
+                                      {practice.priority}
+                                    </span>
+                                  </div>
+                                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                                    {practice.suggestion}
+                                  </p>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex flex-wrap gap-1 mt-auto">
+                        {tech.categories.map((category) => (
+                          <span
+                            key={`${tech.name}-${category.name}`}
+                            className="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
+                          >
+                            {category.name}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </Card>
-                </div>
-              ))}
+                  </div>
+                ))}
             </div>
-
-            {data.categories && data.categories.length > 0 && (
-              <div className="mt-12 text-center">
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                  Technology Categories Found
-                </h4>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {data.categories.map((category) => (
-                    <span
-                      key={category}
-                      className="inline-flex items-center px-3 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300"
-                    >
-                      {category}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </section>
       )}
 
-      {/* Empty State */}
-      {!isLoading && !data.technologies && !error && (
-        <section className="py-16 px-4 text-center">
-          <div className="mx-auto max-w-md">
-            <div className="w-16 h-16 mx-auto mb-4 text-gray-400">
-              <svg fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v8h10V6H5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-              Ready to Analyze
-            </h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              Enter a website URL above to discover its technology stack.
-            </p>
+      {/* Empty State / Loading State */}
+      {!data.technologies && (
+        <section className="py-8 px-4 text-center">
+          <div className="mx-auto max-w-sm">
+            {isLoading ? (
+              <div className="space-y-4">
+                <div className="w-12 h-12 mx-auto text-blue-600">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                    Analyzing Website
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Discovering technologies and frameworks...
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="w-12 h-12 mx-auto text-gray-400">
+                  <svg
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    className="w-full h-full"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v8h10V6H5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                    Ready to Analyze
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Enter a website URL above to discover its technology stack.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )}
