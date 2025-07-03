@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import {
   getSinglePage,
   getNonConflictingPages,
@@ -8,9 +9,9 @@ import {
 import NewsletterSignup from "@/components/newsletter-signup";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params only for static builds (GitHub Pages)
@@ -58,9 +59,8 @@ export const dynamicParams = true;
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  console.log(`🎯 generateMetadata called for slug: "${params.slug}"`);
-
-  const { slug } = params;
+  const { slug } = await params;
+  console.log(`🎯 generateMetadata called for slug: "${slug}"`);
 
   // Skip if slug conflicts with existing routes
   if (isSlugConflict(slug)) {
@@ -106,9 +106,8 @@ export async function generateMetadata({
 }
 
 export default async function GhostPage({ params }: PageProps) {
-  console.log(`🎯 GhostPage component called for slug: "${params.slug}"`);
-
-  const { slug } = params;
+  const { slug } = await params;
+  console.log(`🎯 GhostPage component called for slug: "${slug}"`);
 
   // Skip if slug conflicts with existing routes
   if (isSlugConflict(slug)) {
@@ -139,9 +138,11 @@ export default async function GhostPage({ params }: PageProps) {
       <article className="gh-article post">
         {page.feature_image && (
           <div className="gh-article-image">
-            <img
+            <Image
               src={page.feature_image}
               alt={page.title || "Untitled"}
+              width={800}
+              height={256}
               className="w-full h-64 object-cover"
             />
           </div>
