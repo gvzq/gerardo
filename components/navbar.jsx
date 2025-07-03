@@ -1,15 +1,19 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Navbar, Button } from 'flowbite-react';
-import { BsTelephone } from 'react-icons/bs';
-import { usePathname } from 'next/navigation';
+import React from "react";
+import { Navbar, Button } from "flowbite-react";
+import { BsTelephone } from "react-icons/bs";
+import { usePathname } from "next/navigation";
 
 export default function Nav() {
   const path = usePathname();
 
   return (
-    <Navbar fluid rounded className="p-3 bg-slate rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <Navbar
+      fluid
+      rounded
+      className="p-3 bg-slate rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+    >
       <Navbar.Brand href="/">
         <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
           GERA.
@@ -23,14 +27,21 @@ export default function Nav() {
       </div>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link href="/" active={path === '/' ? 'active' : ''}>
+        <Navbar.Link href="/" active={path === "/" ? "active" : ""}>
           Home
         </Navbar.Link>
-        <Navbar.Link href="/about" active={path.startsWith('/about') ? 'active' : ''}>
+        <Navbar.Link
+          href="/about"
+          active={path.startsWith("/about") ? "active" : ""}
+        >
           About
         </Navbar.Link>
-        <Navbar.Link href="/consulting">
-          Consulting
+        <Navbar.Link href="/consulting">Consulting</Navbar.Link>
+        <Navbar.Link
+          href="/blog"
+          active={path.startsWith("/blog") ? "active" : ""}
+        >
+          Blog
         </Navbar.Link>
         {/* <Navbar.Link href="#book-time">
           Projects

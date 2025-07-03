@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getPages, isSlugConflict } from "@/lib/ghost";
+import { getPages, getPosts, isSlugConflict } from "@/lib/ghost";
 
 // Force dynamic evaluation - don't cache this sitemap
 export const revalidate = 0;
@@ -7,7 +7,7 @@ export const revalidate = 0;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_DOMAIN || "https://www.fctolabs.com";
 
-  // Static routes
+  // Static routes - only main domain
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -28,6 +28,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/appointment`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -35,11 +41,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic Ghost CMS pages
   try {
+    // Dynamic Ghost CMS pages (excluding conflicting routes and blog posts)
     const ghostPages = await getPages();
-
-    const dynamicRoutes: MetadataRoute.Sitemap = ghostPages
+    const pageRoutes: MetadataRoute.Sitemap = ghostPages
       .filter((page) => !isSlugConflict(page.slug)) // Exclude conflicting routes
       .map((page) => ({
         url: `${baseUrl}/${page.slug}`,
@@ -48,9 +53,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       }));
 
-    return [...staticRoutes, ...dynamicRoutes];
+    // Dynamic blog posts
+    const ghostPosts = await getPosts();
+    const blogRoutes: MetadataRoute.Sitemap = ghostPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.updated_at ? new Date(post.updated_at) : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+
+    return [...staticRoutes, ...pageRoutes, ...blogRoutes];
   } catch (error) {
-    console.error("Error fetching Ghost pages for sitemap:", error);
+    console.error("Error fetching Ghost content for sitemap:", error);
     // Return only static routes if Ghost CMS is unavailable
     return staticRoutes;
   }
