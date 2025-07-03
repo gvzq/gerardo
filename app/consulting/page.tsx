@@ -8,6 +8,7 @@ import { CgWebsite } from "react-icons/cg";
 import PropTypes from "prop-types";
 import ImageCard from "@/components/imageCard";
 import { Accordion } from "flowbite-react";
+import Technologies from "./technologies";
 
 function AccordionLink({ href, text }: { href: string; text: string }) {
   return (
@@ -232,6 +233,7 @@ export default function Consulting() {
           </div>
         </div>
       </section>
+      <Technologies />
       {/* <section className="py-20 bg-gray-300">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center">

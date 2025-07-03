@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Card, Spinner } from 'flowbite-react';
-import Image from 'next/image';
+import React, { useState } from "react";
+import { Card, Spinner } from "flowbite-react";
+import Image from "next/image";
 
 export default function Technologies() {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [websiteInfo, setWebsiteInfo] = useState({
-    website: '',
+    website: "",
   });
 
   const handleUpdate = (event) => {
@@ -17,14 +17,14 @@ export default function Technologies() {
     event.preventDefault();
 
     const headers = new Headers({
-      'x-api-key': 'gerardo-x-key',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      Accept: 'application/json',
+      "x-api-key": "gerardo-x-key",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Accept: "application/json",
     });
     const requestOptions = {
-      mode: 'no-cors',
-      method: 'POST',
+      mode: "no-cors",
+      method: "POST",
       headers,
       body: JSON.stringify({
         website: websiteInfo.website,
@@ -32,7 +32,7 @@ export default function Technologies() {
     };
     setLoading(true);
 
-    const url = process.env.NEXT_PUBLIC_REST;
+    const url = process.env.NEXT_PUBLIC_DOMAIN;
     await fetch(`${url}/api/wappalyzer`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
@@ -43,7 +43,7 @@ export default function Technologies() {
         setLoading(false);
         setData([]);
       });
-    setWebsiteInfo({ website: '' });
+    setWebsiteInfo({ website: "" });
   };
 
   return (
@@ -86,7 +86,7 @@ export default function Technologies() {
                     <span className="pl-3">Loading...</span>
                   </>
                 ) : (
-                  'Submit'
+                  "Submit"
                 )}
               </button>
             </div>
@@ -116,7 +116,8 @@ export default function Technologies() {
                       onError={({ currentTarget }) => {
                         /* eslint no-param-reassign: "error" */
                         currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = 'https://via.placeholder.com/150/FFFFFF/?text=Gera';
+                        currentTarget.src =
+                          "https://via.placeholder.com/150/FFFFFF/?text=Gera";
                       }}
                     />
                     {el.name}
