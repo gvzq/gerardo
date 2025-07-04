@@ -8,7 +8,6 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-    paths-ignore: ['api/**'] # Don't trigger on API changes
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -92,6 +91,74 @@ jobs:
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      - name: Disable Next.js telemetry
+        run: npx next telemetry disable
+
+      - name: Clear Next.js cache
+        run: |
+          echo "🧹 Clearing Next.js cache..."
+          rm -rf .next
+          echo "✅ Cache cleared"
+
+      - name: 🔧 Auto-fix Static Export Incompatibilities
+        run: |
+          echo "🚀 Starting static export compatibility fixes..."
+          
+          # Remove known dynamic files that conflict with static export
+          echo "🗑️ Removing known dynamic files..."
+          rm -f app/robots.ts app/sitemap.ts
+          rm -rf app/api/fallback-icon
+          
+          # Remove any API routes (not supported in static export)
+          if [ -d "app/api" ]; then
+            echo "🗑️ Removing remaining API routes..."
+            rm -rf app/api
+          fi
+          # Remove all files containing Server Actions (not supported in static export)
+          echo "🔍 Finding files with Server Actions (excluding node_modules)..."
+          SERVER_ACTION_FILES=$(grep -r -l "use server" --include="*.js" --include="*.jsx" --include="*.ts" --include="*.tsx" --exclude-dir=node_modules . 2>/dev/null || true)
+          if [ -n "$SERVER_ACTION_FILES" ]; then
+            echo "📋 Files to be removed:"
+            echo "$SERVER_ACTION_FILES"
+            echo "🗑️ Removing Server Action files..."
+            echo "$SERVER_ACTION_FILES" | xargs rm -f
+            echo "✅ Server Action files removed successfully"
+            
+            # Remove imports and usages from deleted Server Action files
+            echo "🔧 Cleaning up imports and usages from deleted Server Action files..."
+            for deleted_file in $SERVER_ACTION_FILES; do
+              # Extract the module path (e.g., @/lib/actions from ./lib/actions.js)
+              module_path=$(echo "$deleted_file" | sed 's|^\./||' | sed 's|\.js$||' | sed 's|\.jsx$||' | sed 's|\.ts$||' | sed 's|\.tsx$||' | sed 's|^|@/|')
+              echo "  Cleaning references to: $module_path"
+              
+              # Find files that import from this module
+              grep -r -l "from.*$module_path" --include="*.js" --include="*.jsx" --include="*.ts" --include="*.tsx" --exclude-dir=node_modules . 2>/dev/null | while read file; do
+                echo "    Cleaning imports in: $file"
+                # Remove import lines that reference this module
+                sed -i "/import.*from.*$(echo "$module_path" | sed 's|/|\\/|g')/d" "$file"
+                # Remove any remaining lines that use imported functions
+                sed -i '/analyzeWebsite/d' "$file"
+                # Remove any "use server" directives that might be left
+                sed -i '/^[[:space:]]*"use server"[[:space:]]*;*[[:space:]]*$/d' "$file"
+              done
+            done
+            echo "✅ Import and usage cleanup completed"
+          else
+            echo "✅ No Server Action files found"
+          fi
+          # Set dynamicParams to false for static export
+          echo "🔍 Finding files with dynamicParams = true (excluding node_modules)..."
+          DYNAMIC_PARAMS_FILES=$(grep -r -l "dynamicParams.*=.*true" --include="*.js" --include="*.jsx" --include="*.ts" --include="*.tsx" --exclude-dir=node_modules . 2>/dev/null || true)
+          if [ -n "$DYNAMIC_PARAMS_FILES" ]; then
+            echo "📋 Files with dynamicParams to be modified:"
+            echo "$DYNAMIC_PARAMS_FILES"
+            echo "🔧 Setting dynamicParams to false for static export..."
+            echo "$DYNAMIC_PARAMS_FILES" | xargs sed -i 's/export const dynamicParams = true;/export const dynamicParams = false;/g'
+            echo "✅ dynamicParams updated successfully"
+          else
+            echo "✅ No dynamicParams files found"
+          fi
 
       - name: Build with Next.js for GitHub Pages
         run: |
