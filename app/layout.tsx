@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 // import "./globals.css";
 import "tailwindcss/tailwind.css";
 import Script from "next/script";
@@ -21,6 +21,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,7 +40,9 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="https://gerardo.js.org/manifest/favicon-16x16.png" />
         <link rel="manifest" href="https://gerardo.js.org/manifest/site.webmanifest" />
       </head> */}
-      <body className={`${inter.variable} flex flex-col min-h-screen`}>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} flex flex-col min-h-screen`}
+      >
         <nav>
           <Nav />
         </nav>

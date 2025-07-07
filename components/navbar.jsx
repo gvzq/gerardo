@@ -4,6 +4,7 @@ import React from "react";
 import { Navbar, Button } from "flowbite-react";
 import { BsTelephone } from "react-icons/bs";
 import { usePathname } from "next/navigation";
+import BrandLogo from "./brand-logo";
 
 export default function Nav() {
   const path = usePathname();
@@ -15,9 +16,7 @@ export default function Nav() {
       className="p-3 bg-slate rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700"
     >
       <Navbar.Brand href="/">
-        <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
-          GERA.
-        </span>
+        <BrandLogo />
       </Navbar.Brand>
       <div className="flex flex-1 justify-end md:order-2 px-3">
         <Button href="tel:+1(512)200-3641">
