@@ -9,8 +9,26 @@ import Nav from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Gerardo Vazquez",
-  description: "fCTO and Product",
+  title: {
+    template: "%s | Gerardo Vazquez - fCTO",
+    default: "Gerardo Vazquez - Fractional CTO & Product Expert",
+  },
+  description:
+    "Fractional CTO (fCTO) and Product Expert helping startups and businesses scale with strategic technology leadership, product development, and technical consulting.",
+  keywords: [
+    "Fractional CTO",
+    "Product Expert",
+    "Startup Consulting",
+    "Product Development",
+    "Technical Consulting",
+    "Austin, Texas",
+  ],
+  openGraph: {
+    title: "Gerardo Vazquez - Fractional CTO & Product Expert",
+    description:
+      "Fractional CTO (fCTO) and Product Expert helping startups and businesses scale with strategic technology leadership, product development, and technical consulting.",
+    images: ["/images/gerardo-vazquez.jpg"],
+  },
 };
 const clarityMicrosoft =
   '(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "dui4jwiwac");';
