@@ -1,54 +1,13 @@
-"use client";
-
 import React from "react";
 import { Navbar, Button } from "flowbite-react";
 import { BsTelephone } from "react-icons/bs";
-import { usePathname } from "next/navigation";
 import BrandLogo from "./brand-logo";
+import { getNonConflictingPages } from "@/lib/ghost";
+import NavbarClient from "./navbar-client";
 
-export default function Nav() {
-  const path = usePathname();
+export default async function Nav() {
+  // Fetch Ghost pages at build time/server-side
+  const ghostPages = await getNonConflictingPages();
 
-  return (
-    <Navbar
-      fluid
-      rounded
-      className="p-3 bg-slate rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700"
-    >
-      <Navbar.Brand href="/">
-        <BrandLogo />
-      </Navbar.Brand>
-      <div className="flex flex-1 justify-end md:order-2 px-3">
-        <Button href="tel:+1(512)200-3641">
-          <BsTelephone className="mr-2" />
-          (512) 200-3641
-        </Button>
-      </div>
-      <Navbar.Toggle />
-      <Navbar.Collapse>
-        <Navbar.Link href="/" active={path === "/" ? "active" : ""}>
-          Home
-        </Navbar.Link>
-        <Navbar.Link
-          href="/about"
-          active={path.startsWith("/about") ? "active" : ""}
-        >
-          About
-        </Navbar.Link>
-        <Navbar.Link href="/consulting">Consulting</Navbar.Link>
-        <Navbar.Link
-          href="/blog"
-          active={path.startsWith("/blog") ? "active" : ""}
-        >
-          Blog
-        </Navbar.Link>
-        {/* <Navbar.Link href="#book-time">
-          Projects
-        </Navbar.Link>
-        <Navbar.Link href="#contact">
-          Contact
-        </Navbar.Link> */}
-      </Navbar.Collapse>
-    </Navbar>
-  );
+  return <NavbarClient ghostPages={ghostPages} />;
 }

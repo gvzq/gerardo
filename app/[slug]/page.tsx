@@ -146,7 +146,7 @@ export default async function GhostPage({ params }: PageProps) {
     );
 
     return (
-      <article className="gh-article post">
+      <>
         {page.feature_image && (
           <div className="gh-article-image">
             <Image
@@ -159,15 +159,15 @@ export default async function GhostPage({ params }: PageProps) {
           </div>
         )}
 
-        <header className="gh-article-header gh-canvas">
+        <header className="gh-article-header">
           <h1 className="gh-article-title">{page.title || "Untitled"}</h1>
         </header>
 
-        <div className="gh-content gh-canvas">
+        <div className="gh-content">
           <div dangerouslySetInnerHTML={{ __html: page.html || "" }} />
           <NewsletterSignup />
         </div>
-      </article>
+      </>
     );
   } catch (error) {
     log.error({ slug, error }, "❌ Error rendering Ghost page");

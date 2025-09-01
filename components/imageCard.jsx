@@ -11,7 +11,7 @@ export default function ImageCard({ enableName = false }) {
         <div className="max-w-sm max-w-1/16 center">
           <Image
             className="object-cover rounded-full antialiased"
-            src="https://media.licdn.com/dms/image/v2/D5603AQE5RlcowPwsvA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729197145263?e=1756339200&v=beta&t=hTcexddfazYDlnM0aemv2eqmRaH1AFP_chKjpXosnzk"
+            src="/gerardo.jpg"
             alt="Gerardo Vazquez"
             width={400}
             height={400}

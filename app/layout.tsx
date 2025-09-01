@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-// import "./globals.css";
+import "./globals.css";
 import "tailwindcss/tailwind.css";
 import Script from "next/script";
 import React from "react";
@@ -23,6 +23,10 @@ export const metadata: Metadata = {
     "Technical Consulting",
     "Austin, Texas",
   ],
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: "Gerardo Vazquez - Fractional CTO & Product Expert",
     description:
@@ -64,7 +68,7 @@ export default function RootLayout({
         <nav>
           <Nav />
         </nav>
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow pt-20">{children}</main>
         <footer>
           <Footer />
         </footer>
