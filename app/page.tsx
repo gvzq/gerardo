@@ -96,25 +96,7 @@ function Quote() {
 function Features() {
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div className="grid gap-8 row-gap-10 lg:grid-cols-2">
-        <div className="max-w-md sm:mx-auto sm:text-center">
-          <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-            <DiJavascript className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
-          </div>
-          <h6 className="mb-3 text-xl font-bold leading-5">JavaScript</h6>
-          <p className="mb-3 text-sm text-gray-900">
-            JavaScript is a programming language used in 98% on the client side
-            in websites, and could be used in servers as well. Gerardo has
-            experience with React, Gatsby, Next, Node, and Angular.
-          </p>
-          <p className="flex space-x-2 items-center justify-center">
-            <TbBrandNextjs />
-            <FaAngular />
-            <FaReact />
-            <FaNodeJs />
-            <SiGatsby />
-          </p>
-        </div>
+      <div className="grid gap-8 row-gap-10 lg:grid-cols-3">
         <div className="max-w-md sm:mx-auto sm:text-center">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
             <FaServer className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
@@ -129,24 +111,6 @@ function Features() {
             <SiGooglecloud />
             <SiVercel />
             <VscAzure />
-          </p>
-        </div>
-        <div className="max-w-md sm:mx-auto sm:text-center">
-          <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-            <BsWordpress className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
-          </div>
-          <h6 className="mb-3 text-xl font-bold leading-5">Wordpress</h6>
-          <p className="mb-3 text-sm text-gray-900">
-            WordPress is a content management system and powers over 43.3% of
-            all the websites on the Internet. Gerardo has experience with
-            Elementor, Hubspot, Search Engine Optimization (SEO), Accelerated
-            Mobile Pages (AMP), Page Analytics, and Cache Plugins.
-          </p>
-          <p className="flex space-x-2 items-center justify-center">
-            <FaElementor />
-            <SiHubspot />
-            <BsFillLightningChargeFill />
-            <DiGoogleAnalytics />
           </p>
         </div>
         <div className="max-w-md sm:mx-auto sm:text-center">
@@ -167,6 +131,24 @@ function Features() {
             <SiJira />
             <TbBrandTeams />
             <FaSlack />
+          </p>
+        </div>
+        <div className="max-w-md sm:mx-auto sm:text-center">
+          <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
+            <DiJavascript className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16" />
+          </div>
+          <h6 className="mb-3 text-xl font-bold leading-5">JavaScript/TypeScript</h6>
+          <p className="mb-3 text-sm text-gray-900">
+            JavaScript is a programming language used in 98% on the client side
+            in websites, and could be used in servers as well. Gerardo has
+            experience with React, Gatsby, Next, Node, and Angular.
+          </p>
+          <p className="flex space-x-2 items-center justify-center">
+            <TbBrandNextjs />
+            <FaAngular />
+            <FaReact />
+            <FaNodeJs />
+            <SiGatsby />
           </p>
         </div>
       </div>
