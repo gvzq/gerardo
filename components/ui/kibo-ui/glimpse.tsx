@@ -1,17 +1,14 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const Glimpse = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("relative", className)}
-    {...props}
-  />
+  <div ref={ref} className={cn("relative", className)} {...props} />
 ));
 Glimpse.displayName = "Glimpse";
 
@@ -19,11 +16,7 @@ const GlimpseTrigger = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("cursor-pointer", className)}
-    {...props}
-  />
+  <div ref={ref} className={cn("cursor-pointer", className)} {...props} />
 ));
 GlimpseTrigger.displayName = "GlimpseTrigger";
 
@@ -72,11 +65,14 @@ GlimpseDescription.displayName = "GlimpseDescription";
 const GlimpseImage = React.forwardRef<
   HTMLImageElement,
   React.ImgHTMLAttributes<HTMLImageElement>
->(({ className, ...props }, ref) => (
-  <img
+>(({ className, alt, ...props }, ref) => (
+  <Image
     ref={ref}
+    alt={alt ?? ""}
     className={cn("w-full h-32 object-cover rounded-md mt-2", className)}
-    {...props}
+    width={320}
+    height={128}
+    {...(props as any)}
   />
 ));
 GlimpseImage.displayName = "GlimpseImage";
