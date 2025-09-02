@@ -10,12 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/", "/admin/", "/ghost/", "/_next/", "/private/"],
       },
-      // Block all subdomains - only allow main domain
-      {
-        userAgent: "*",
-        disallow: "/",
-        // This will apply to subdomains when they serve this robots.txt
-      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
     // Additional directive to explicitly block common admin interfaces
