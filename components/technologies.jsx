@@ -115,7 +115,7 @@ export default function Technologies() {
 
   return (
     <div className="min-h-48 bg-gray-50 dark:bg-gray-900">
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
             Identify Technologies on Your Website
@@ -144,6 +144,9 @@ export default function Technologies() {
                 className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors"
                 disabled={isLoading}
               />
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                Enter a complete URL to discover its technology stack and get insights
+              </p>
               {error && (
                 <p className="mt-2 text-sm text-red-600 dark:text-red-400">
                   {error}
@@ -193,7 +196,26 @@ export default function Technologies() {
                 disabled={isLoading || !websiteInfo.website.trim()}
                 className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                {isLoading ? <LoadingSpinner /> : "Analyze Website"}
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      className="w-5 h-5 mr-2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM13.5 10.5h-6m3-3v6"
+                      />
+                    </svg>
+                    {websiteInfo.website.trim() ? "Analyze Website" : "Ready to Analyze"}
+                  </div>
+                )}
               </button>
             </div>
           </form>
@@ -464,49 +486,23 @@ export default function Technologies() {
         </section>
       )}
 
-      {/* Empty State / Loading State */}
-      {!data.technologies && (
+      {/* Loading State */}
+      {isLoading && !data.technologies && (
         <section className="py-8 px-4 text-center">
           <div className="mx-auto max-w-sm">
-            {isLoading ? (
-              <div className="space-y-4">
-                <div className="w-12 h-12 mx-auto text-blue-600">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                    Analyzing Website
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Discovering technologies and frameworks...
-                  </p>
-                </div>
+            <div className="space-y-4">
+              <div className="w-12 h-12 mx-auto text-blue-600">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
               </div>
-            ) : (
-              <div className="space-y-4">
-                <div className="w-12 h-12 mx-auto text-gray-400">
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    className="w-full h-full"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v8h10V6H5z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                    Ready to Analyze
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Enter a website URL above to discover its technology stack.
-                  </p>
-                </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                  Analyzing Website
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Discovering technologies and frameworks...
+                </p>
               </div>
-            )}
+            </div>
           </div>
         </section>
       )}

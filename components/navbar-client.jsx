@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Navbar, Button } from "flowbite-react";
+import { Navbar } from "flowbite-react";
+import { Button } from "@/components/ui/button";
 import { BsTelephone } from "react-icons/bs";
 import { usePathname } from "next/navigation";
 import BrandLogo from "./brand-logo";
@@ -19,28 +20,23 @@ export default function NavbarClient({ ghostPages }) {
         <BrandLogo />
       </Navbar.Brand>
       <div className="flex flex-1 justify-end md:order-2 px-3">
-        <Button href="tel:+1(512)200-3641">
-          <BsTelephone className="mr-2" />
-          (512) 200-3641
+        <Button size="sm" variant="outline" asChild>
+          <a href="tel:+1(512)200-3641">
+            <BsTelephone className="mr-2" />
+            (512) 200-3641
+          </a>
         </Button>
       </div>
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Navbar.Link href="/" active={path === "/" ? "active" : ""}>
-          Home
+          Consulting
         </Navbar.Link>
         <Navbar.Link
           href="/about"
           active={path.startsWith("/about") ? "active" : ""}
         >
           About
-        </Navbar.Link>
-        <Navbar.Link href="/consulting">Consulting</Navbar.Link>
-        <Navbar.Link
-          href="/blog"
-          active={path.startsWith("/blog") ? "active" : ""}
-        >
-          Blog
         </Navbar.Link>
         {/* Dynamic Ghost Pages */}
         {ghostPages.map((page) => (

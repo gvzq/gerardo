@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
-import { Button } from "flowbite-react";
+import { Accordion } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
-import { BsWordpress, BsFillLightningChargeFill } from "react-icons/bs";
+import PropTypes from "prop-types";
 import {
   FaServer,
   FaAws,
@@ -10,54 +12,39 @@ import {
   FaAngular,
   FaNodeJs,
   FaGithub,
-  FaElementor,
   FaSlack,
+  FaLaptopCode,
 } from "react-icons/fa";
-import { VscAzure } from "react-icons/vsc";
+import { VscAzure, VscProject } from "react-icons/vsc";
 import { TbBrandTeams } from "react-icons/tb";
+import { CgWebsite } from "react-icons/cg";
 
 import {
   SiGooglecloud,
   SiVercel,
   SiGatsby,
-  SiHubspot,
   SiJira,
 } from "react-icons/si";
-import { DiScrum, DiJavascript, DiGoogleAnalytics } from "react-icons/di";
+import { DiScrum, DiJavascript } from "react-icons/di";
 import { TbBrandNextjs } from "react-icons/tb";
 import innovation from "@/public/innovation-pipeline.jpeg";
 import ImageCard from "@/components/imageCard";
+import Technologies from "@/components/technologies";
 
-function CallToAction() {
+function AccordionLink({ href, text }: { href: string; text: string }) {
   return (
-    <Link href="https://zcal.co/gerardo/consulting">
-      <Button size="xl" pill>
-        Schedule a Meeting
-      </Button>
+    <Link href={href}>
+      <span className="text-blue-600 hover:underline dark:text-blue-500">
+        {text}
+      </span>
     </Link>
   );
 }
-function Header() {
-  return (
-    <div className="bg-gray-200 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-        <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-          Gerardo Vazquez
-        </p>
-        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-          I&apos;m here to help you
-        </h2>
-        <p className="text-base text-gray-700 md:text-lg">
-          I design effective websites, develop the best solution, and I measure
-          the impact.
-        </p>
-        <div className="grid place-items-center my-4">
-          <CallToAction />
-        </div>
-      </div>
-    </div>
-  );
-}
+AccordionLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
 function Quote() {
   return (
     <section className="bg-gray-200 dark:bg-gray-800">
@@ -333,34 +320,226 @@ function Process() {
   );
 }
 
-export default function Home() {
+function HeroSection() {
   return (
-    <div>
-      <div className="bg-white dark:bg-gray-900">
-        <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-          <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-              Hey, I&lsquo;m Gerardo
-            </h1>
-            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              I&lsquo;m a software engineer. Thank you for visiting my page
+    <div className="bg-white dark:bg-gray-900">
+      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div className="mr-auto place-self-center lg:col-span-7">
+          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            {"Your "}
+            <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
+              fCTO
+            </span>
+            {" & "}
+            <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
+              product
+            </span>
+            {" expert"}
+          </h1>
+          <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            I design effective websites, develop the best solution, measure the impact, and find the right digital solution for your business needs
+          </p>
+          <Link href="https://zcal.co/gerardo/consulting">
+            <span className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Schedule a Meeting
+              <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+              </svg>
+            </span>
+          </Link>
+          <Link href="#services">
+            <span className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+              Learn More
+            </span>
+          </Link>
+        </div>
+        <div className="lg:mt-0 lg:col-span-5 lg:flex">
+          <ImageCard />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <section className="py-20 relative block bg-gray-900" id="services">
+      <div className="container mx-auto px-4 lg:pt-24 lg:pb-24">
+        <div className="flex flex-wrap text-center justify-center">
+          <div className="w-full lg:w-6/12 px-4">
+            <h2 className="text-4xl font-semibold text-white">Services</h2>
+            <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-300">
+              I will collaborate with you to develop a plan for success.
             </p>
-            <Link href="https://zcal.co/gerardo/consulting">
-              <span className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                Schedule a Meeting
-              </span>
-            </Link>
           </div>
-          <div className="lg:mt-0 lg:col-span-5 lg:flex">
-            <ImageCard />
+        </div>
+        <div className="flex flex-wrap mt-12 justify-center">
+          <div className="w-full lg:w-3/12 px-4 text-center mb-8">
+            <div className="text-gray-900 p-3 w-16 h-16 shadow-lg rounded-full bg-white inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+              <CgWebsite className="w-10 h-10 text-xl" />
+            </div>
+            <h6 className="text-xl mt-5 font-semibold text-white">
+              Web Design and Development
+            </h6>
+            <p className="mt-2 mb-4 text-gray-300 leading-relaxed">
+              Harness the power of modern website development. Differentiate
+              your company. Redesign your 
+              <span className="text-green-400 font-medium"> product</span> for better performance and
+              efficiency. I help you plan, design, and develop, end-to-end.
+            </p>
+          </div>
+          <div className="w-full lg:w-3/12 px-4 text-center mb-8">
+            <div className="text-gray-900 p-3 w-16 h-16 shadow-lg rounded-full bg-white inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+              <VscProject className="w-10 h-10 text-xl" />
+            </div>
+            <h5 className="text-xl mt-5 font-semibold text-white">
+              fCTO & Product Management
+            </h5>
+            <p className="mt-2 mb-4 text-gray-300 leading-relaxed">
+              Strengthen your market offerings as your fractional CTO. Innovate your offerings to
+              enhance customer experiences. Build your positioning and
+              messaging. Prioritize what matters most to your 
+              <span className="text-green-400 font-medium"> product</span> audience.
+            </p>
+          </div>
+          <div className="w-full lg:w-3/12 px-4 text-center mb-8">
+            <div className="text-gray-900 p-3 w-16 h-16 shadow-lg rounded-full bg-white inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+              <FaLaptopCode className="w-10 h-10 text-xl" />
+            </div>
+            <h5 className="text-xl mt-5 font-semibold text-white">
+              Custom Software
+            </h5>
+            <p className="mt-2 mb-4 text-gray-300 leading-relaxed">
+              Analyze your software needs and create technology to help your
+              operations. Collaborate to build software that solves business
+              problems and enhances your 
+              <span className="text-green-400 font-medium"> product</span> capabilities.
+            </p>
           </div>
         </div>
       </div>
+    </section>
+  );
+}
 
+function Questions() {
+  return (
+    <section className="bg-white dark:bg-gray-900 py-8">
+      <div className="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
+        <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-center text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
+          Frequently asked questions
+        </h2>
+        <Accordion collapseAll>
+          <Accordion.Panel>
+            <Accordion.Title>
+              Does Gerardo offer a free consultation?
+            </Accordion.Title>
+            <Accordion.Content>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                Yes, we can have an initial exploratory call to assess what
+                areas of your business need attention.
+              </p>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                Together we will prioritize the work that needs to happen today,
+                and lay out a roadmap for iterative improvements.
+              </p>
+            </Accordion.Content>
+          </Accordion.Panel>
+          <Accordion.Panel>
+            <Accordion.Title>What are your working terms?</Accordion.Title>
+            <Accordion.Content>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                It&apos;s quite simple. We will be working month to month
+                because we are looking to build a long lasting relationship with
+                you.
+              </p>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                We have a subscription model so you will never have any billing
+                surprises. This way we challenge ourselves to provide continuous
+                value.
+              </p>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                You can stop our services at any time.
+              </p>
+            </Accordion.Content>
+          </Accordion.Panel>
+          <Accordion.Panel>
+            <Accordion.Title>
+              What kind of background and experience does Gerardo have?
+            </Accordion.Title>
+            <Accordion.Content>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                Gerardo is a Texas A&M alumni and a S&P 500 software engineer.
+                He has a computer science bachelor&apos;s of science degree and
+                a business minor. He used to work in innovation and 
+                <span className="text-blue-600 font-medium"> product</span> management.
+              </p>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                He has more than 5 years of experience building websites and
+                <span className="text-blue-600 font-medium"> product</span> management certifications.
+              </p>
+              <p className="text-gray-500 dark:text-gray-400">
+                {"Check out my "}
+                <AccordionLink
+                  href="https://linkedin.com/in/gvzqz"
+                  text="LinkedIn"
+                />
+                {" for a quick glance of my professional experience."}
+              </p>
+            </Accordion.Content>
+          </Accordion.Panel>
+          <Accordion.Panel>
+            <Accordion.Title>
+              What results can I expect from working with Gerardo?
+            </Accordion.Title>
+            <Accordion.Content>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                Gerardo focuses on the work that is most meaningful to you.
+              </p>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                He may start by identifying ways to reduce costs or by
+                developing custom software solutions tailored to your business
+                needs.
+              </p>
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                Learn more about some of the technologies Gerardo uses:
+              </p>
+              <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
+                <li>
+                  <a
+                    href="https://nextjs.org/"
+                    className="text-blue-600 hover:underline dark:text-blue-500"
+                  >
+                    Next.js
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://vercel.com/"
+                    className="text-blue-600 hover:underline dark:text-blue-500"
+                  >
+                    Vercel
+                  </a>
+                </li>
+              </ul>
+            </Accordion.Content>
+          </Accordion.Panel>
+        </Accordion>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <div>
+      <HeroSection />
+      <ServicesSection />
       <Features />
       <Quote />
       <Process />
-      <Header />
+      <Technologies />
+      <Questions />
     </div>
   );
 }

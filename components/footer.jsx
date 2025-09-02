@@ -10,6 +10,7 @@ export default function Foot() {
           <BrandLogo />
           <Footer.LinkGroup>
             <Footer.Link href="/about">About</Footer.Link>
+            <Footer.Link href="/blog">Blog</Footer.Link>
             {/* <Footer.Link href="/contact">
                             Contact
                         </Footer.Link> */}
