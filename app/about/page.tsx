@@ -29,7 +29,38 @@ export default function About() {
 
   return (
     <div className="h-full">
+      {/* TODO make two sections */}
       <ImageCard enableName />
+      {/* todo craft a story about gerardo */}
+      
+      {/* Gerardo's Story */}
+      <div className="container mx-auto px-4 py-12 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">From Hacker to Venture Operator</h2>
+          
+          <div className="prose prose-lg mx-auto text-gray-700 space-y-6">
+            <p className="text-lg leading-relaxed">
+              I learned to code in my bedroom during high school, fueled by pure curiosity and the thrill of building something from nothing. That hacker mindset never left me; I'm still obsessed with understanding systems quickly and grinding through complex problems to ship products that matter.
+            </p>
+            
+            <p className="text-lg leading-relaxed">
+              My journey took me from Charles Schwab, where I joined for the innovation culture, to co-founding Swoovy and building Managerly from the ground up. But the real game-changer was stepping into venture capital as a Venture Fellow at Palm Venture Studios. There, I learned the brutal truth: <strong>business model and traction come first, platform and tech second.</strong>
+            </p>
+            
+            <p className="text-lg leading-relaxed">
+              I've seen too many brilliant technical teams build amazing products that never find market fit. That's why I now work as a fractional CTO. I'm helping companies operate with the same strategic mindset that VCs use to evaluate investments. I translate complex technical decisions into clear business value, because I know that understanding when to pivot (or when to run) can be the difference between a unicorn and a write-off.
+            </p>
+            
+            <p className="text-lg leading-relaxed">
+              My approach? Strategic guidance with hands-on coding. I get in the trenches with your team while keeping one eye on the bigger picture. I've helped clients achieve 5x growth in just a couple of years by focusing on the right problems at the right time.
+            </p>
+            
+            <p className="text-lg leading-relaxed font-semibold text-gray-900">
+              The lesson I've learned: Never stop learning, but always start with the business fundamentals. Technology is a powerful enabler, but it's the market opportunity and execution that drive real growth.
+            </p>
+          </div>
+        </div>
+      </div>
       
       {/* Clients Section */}
       <div className="container mx-auto px-4 py-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8">
