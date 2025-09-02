@@ -114,7 +114,7 @@ export default function Technologies() {
   };
 
   return (
-    <div className="min-h-48 bg-gray-50 dark:bg-gray-900">
+    <div className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
@@ -224,7 +224,7 @@ export default function Technologies() {
 
       {/* Results Section */}
       {data.technologies && !isLoading && (
-        <section className="py-8 px-4">
+        <section className="py-16 lg:py-24 px-4 mx-4 lg:mx-8">
           <div className="mx-auto max-w-screen-xl">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
@@ -488,7 +488,7 @@ export default function Technologies() {
 
       {/* Loading State */}
       {isLoading && !data.technologies && (
-        <section className="py-8 px-4 text-center">
+        <section className="py-16 lg:py-24 px-4 mx-4 lg:mx-8 text-center">
           <div className="mx-auto max-w-sm">
             <div className="space-y-4">
               <div className="w-12 h-12 mx-auto text-blue-600">

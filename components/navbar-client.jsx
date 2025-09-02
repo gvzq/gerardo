@@ -14,7 +14,7 @@ export default function NavbarClient({ ghostPages }) {
     <Navbar
       fluid
       rounded
-      className="p-3 bg-slate rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      className="p-3 bg-background rounded border-border dark:bg-gray-800 dark:border-gray-700"
     >
       <Navbar.Brand href="/">
         <BrandLogo />
