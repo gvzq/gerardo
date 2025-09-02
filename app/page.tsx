@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Accordion } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import { Faq } from "@/components/faq";
 import {
   FaAws,
   FaReact,
@@ -24,51 +24,124 @@ import innovation from "@/public/innovation-pipeline.jpeg";
 import ImageCard from "@/components/imageCard";
 import Technologies from "@/components/technologies";
 
-function AccordionLink({ href, text }: { href: string; text: string }) {
-  return (
-    <Link href={href}>
-      <span className="text-blue-600 hover:underline dark:text-blue-500">
-        {text}
-      </span>
-    </Link>
-  );
-}
-AccordionLink.propTypes = {
-  href: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-};
-
 function Quote() {
   return (
     <section className="bg-accent py-16 lg:py-24">
       <div className="max-w-screen-xl px-6 mx-auto text-center">
-        <figure className="max-w-screen-md mx-auto">
-          <svg
-            className="h-12 mx-auto mb-3 text-accent-foreground/60"
-            viewBox="0 0 24 27"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
-              fill="currentColor"
-            />
-          </svg>
-          <blockquote>
-            <p className="text-xl font-medium text-accent-foreground md:text-2xl">
-              &quot;First, solve the problem. Then write the code.&quot;
-            </p>
-          </blockquote>
-          {/* <figcaption className="flex items-center justify-center mt-6 space-x-3">
-            <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture" />
-            <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-              <div className="pr-3 font-medium text-gray-900 dark:text-white">John Johnson</div>
-              <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
-              CEO at Google
+        <div className="max-w-screen-md mx-auto">
+          <h3 className="text-2xl font-bold text-accent-foreground mb-8">
+            Why Choose Fractional Over Full-Time
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8 text-left">
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-accent-foreground">
+                    Immediate Impact
+                  </h4>
+                  <p className="text-accent-foreground/70">
+                    Start solving technical challenges this week, not after
+                    months of recruiting
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-accent-foreground">
+                    60-80% Cost Savings
+                  </h4>
+                  <p className="text-accent-foreground/70">
+                    Get executive-level expertise without full-time salary and
+                    equity dilution
+                  </p>
+                </div>
               </div>
             </div>
-          </figcaption> */}
-        </figure>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-accent-foreground">
+                    Startup Experience
+                  </h4>
+                  <p className="text-accent-foreground/70">
+                    Technical foundations that scale with startup experience
+                    across multiple growth stages
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-accent-foreground">
+                    Flexible Engagement
+                  </h4>
+                  <p className="text-accent-foreground/70">
+                    From 10 hours/week strategic guidance to intensive project
+                    sprints based on your needs
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 p-6 bg-accent-foreground/10 rounded-lg">
+            <blockquote>
+              <p className="text-lg font-medium text-accent-foreground italic">
+                &quot;First, solve the problem. Then write the code.&quot;
+              </p>
+            </blockquote>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -331,23 +404,26 @@ function HeroSection() {
       <div className="grid max-w-screen-xl px-6 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-            {"Your "}
+            Turn Ideas into{" "}
             <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
-              fCTO
+              Fundable
             </span>
-            {" & "}
-            <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
-              product
-            </span>
-            {" expert"}
+            {" Products"}
           </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-            I design effective websites, develop the best solution, measure the
-            impact, and find the right digital solution for your business needs
+            Transform your startup vision into investor-ready technology
+            solutions without the full-time CTO commitment. I partner with
+            non-technical founders to navigate critical technology decisions and
+            prepare for venture capital due diligence.
           </p>
+          <div className="mb-6">
+            <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+              ✓ 60-80% Cost Savings vs Full-Time CTO
+            </p>
+          </div>
           <Link href="https://zcal.co/gerardo/consulting">
             <span className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Schedule a Meeting
+              Get Started This Week
               <svg
                 className="w-5 h-5 ml-2 -mr-1"
                 fill="currentColor"
@@ -364,7 +440,7 @@ function HeroSection() {
           </Link>
           <Link href="#services">
             <span className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-              Learn More
+              See How It Works
             </span>
           </Link>
         </div>
@@ -383,42 +459,30 @@ function ServicesSection() {
         <div className="flex flex-wrap text-center justify-center">
           <div className="w-full lg:w-6/12 px-4">
             <h2 className="text-4xl font-semibold text-primary-foreground">
-              Services
+              What I Do
             </h2>
             <p className="text-lg leading-relaxed mt-4 mb-4 text-primary-foreground/80">
-              I will collaborate with you to develop a plan for success.
+              Fractional CTO helping pre-seed startups and bootstrap businesses
+              turn ideas into fundable products
             </p>
           </div>
         </div>
         <div className="flex flex-wrap mt-12 justify-center">
           <div className="w-full lg:w-3/12 px-4 text-center mb-8">
             <div className="text-primary p-3 w-16 h-16 shadow-lg rounded-full bg-primary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
-              <CgWebsite className="w-10 h-10" />
-            </div>
-            <h6 className="text-xl mt-5 font-bold text-primary-foreground">
-              Web Design and Development
-            </h6>
-            <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
-              Harness the power of modern website development. Differentiate
-              your company. Redesign your
-              <span className="text-accent font-medium"> product</span> for
-              better performance and efficiency. I help you plan, design, and
-              develop, end-to-end.
-            </p>
-          </div>
-          <div className="w-full lg:w-3/12 px-4 text-center mb-8">
-            <div className="text-primary p-3 w-16 h-16 shadow-lg rounded-full bg-primary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <VscProject className="w-10 h-10" />
             </div>
             <h6 className="text-xl mt-5 font-bold text-primary-foreground">
-              fCTO & Product Management
+              AI Strategy & Implementation
             </h6>
             <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
-              Strengthen your market offerings as your fractional CTO. Innovate
-              your offerings to enhance customer experiences. Build your
-              positioning and messaging. Prioritize what matters most to your
-              <span className="text-accent font-medium"> product</span>{" "}
-              audience.
+              Leverage practical AI solutions for competitive advantage without
+              burning budget on custom development. Build
+              <span className="text-accent font-medium">
+                {" "}
+                product-market fit
+              </span>{" "}
+              with technology that scales efficiently.
             </p>
           </div>
           <div className="w-full lg:w-3/12 px-4 text-center mb-8">
@@ -426,14 +490,30 @@ function ServicesSection() {
               <FaLaptopCode className="w-10 h-10" />
             </div>
             <h6 className="text-xl mt-5 font-bold text-primary-foreground">
-              Custom Software
+              Investor Readiness
             </h6>
             <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
-              Analyze your software needs and create technology to help your
-              operations. Collaborate to build software that solves business
-              problems and enhances your
-              <span className="text-accent font-medium"> product</span>{" "}
-              capabilities.
+              Prepare technical materials and architecture documentation that
+              impress VCs during due diligence. Align technology roadmaps with
+              <span className="text-accent font-medium">
+                {" "}
+                funding objectives
+              </span>{" "}
+              and business milestones.
+            </p>
+          </div>
+          <div className="w-full lg:w-3/12 px-4 text-center mb-8">
+            <div className="text-primary p-3 w-16 h-16 shadow-lg rounded-full bg-primary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+              <CgWebsite className="w-10 h-10" />
+            </div>
+            <h6 className="text-xl mt-5 font-bold text-primary-foreground">
+              Technology Stack Selection
+            </h6>
+            <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
+              Make foundational decisions that support long-term growth without
+              over-engineering for current stage. Bridge the gap between vision
+              and
+              <span className="text-accent font-medium"> execution</span>.
             </p>
           </div>
         </div>
@@ -443,112 +523,49 @@ function ServicesSection() {
 }
 
 function Questions() {
+  const faqItems = [
+    {
+      id: "faq-1",
+      question: "How does your retainer model work?",
+      answer:
+        "I work on a flexible retainer basis where we agree on minimum hours and rates together based on your needs. Typical engagement: 5-10 hours weekly for pre-seed startups at $150-200/hour, providing strategic expertise without the $177-293K annual commitment of a full-time CTO. Work is done remotely with opportunities to meet in person when needed. You can adjust or stop services at any time.",
+    },
+    {
+      id: "faq-2",
+      question: "What makes you different from a traditional CTO?",
+      answer:
+        "Unlike traditional CTOs focused primarily on code, I lead with business strategy first. My approach aligns technology roadmap with funding milestones, ensuring every technical decision drives toward product-market fit and investor readiness. I function as an integrated team member, managing resources and making strategic decisions alongside operators and founders. My background spans innovation in tech, software engineering, co-founding startups, and venture capital.",
+    },
+    {
+      id: "faq-3",
+      question: "What types of startups do you work with?",
+      answer:
+        "I specialize in helping pre-seed startups that face technical leadership gaps while needing strategic expertise: Pre-seed startups with limited runway seeking 60-80% cost savings vs full-time CTO, companies preparing for Series A fundraising and investor due diligence, startups building MVPs and validating product-market fit efficiently, teams struggling with outsourced development and needing strategic oversight, and non-technical founders who need to navigate critical technology decisions.",
+    },
+    {
+      id: "faq-4",
+      question: "Do you offer a free consultation?",
+      answer:
+        "Yes, I offer an initial exploratory call to assess your technical leadership needs and determine if we're a good fit. During this call, we'll prioritize the work that needs to happen immediately and lay out a strategic roadmap that aligns with your funding objectives and business milestones.",
+    },
+    {
+      id: "faq-5",
+      question: "What's your background and experience?",
+      answer:
+        "I'm a Texas A&M alumni with a Computer Science degree and business minor. My career spans multiple domains: Software Engineering with S&P 500 experience at Charles Schwab in innovation, co-founder experience building Swoovy and Managerly from the ground up, Venture Capital Fellow at Palm Venture Studios understanding investor perspectives, and 5+ years of technical leadership helping startups scale technology and teams. Check out my LinkedIn at linkedin.com/in/gvzqz for a complete view of my experience bridging technology and business strategy.",
+    },
+    {
+      id: "faq-6",
+      question: "What results can I expect working with you?",
+      answer:
+        "I focus on driving measurable business outcomes through strategic technology decisions: Investor readiness with technical documentation and architecture that impresses VCs during due diligence, cost optimization with right-sized technology solutions that scale without over-engineering, product-market fit acceleration with technology roadmaps aligned with business milestones, and team efficiency through strategic oversight of development resources and outsourced teams. My clients have achieved significant growth by focusing on the right technical problems at the right time, with technology decisions that drive toward funding objectives rather than just code quality.",
+    },
+  ];
+
   return (
-    <section className="bg-secondary py-16 lg:py-24">
-      <div className="max-w-screen-xl px-6 mx-auto">
-        <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-center text-secondary-foreground lg:mb-8 lg:text-3xl">
-          Frequently asked questions
-        </h2>
-        <Accordion collapseAll>
-          <Accordion.Panel>
-            <Accordion.Title>
-              Does Gerardo offer a free consultation?
-            </Accordion.Title>
-            <Accordion.Content>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Yes, we can have an initial exploratory call to assess what
-                areas of your business need attention.
-              </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Together we will prioritize the work that needs to happen today,
-                and lay out a roadmap for iterative improvements.
-              </p>
-            </Accordion.Content>
-          </Accordion.Panel>
-          <Accordion.Panel>
-            <Accordion.Title>What are your working terms?</Accordion.Title>
-            <Accordion.Content>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                It&apos;s quite simple. We will be working month to month
-                because we are looking to build a long lasting relationship with
-                you.
-              </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                We have a subscription model so you will never have any billing
-                surprises. This way we challenge ourselves to provide continuous
-                value.
-              </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                You can stop our services at any time.
-              </p>
-            </Accordion.Content>
-          </Accordion.Panel>
-          <Accordion.Panel>
-            <Accordion.Title>
-              What kind of background and experience does Gerardo have?
-            </Accordion.Title>
-            <Accordion.Content>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Gerardo is a Texas A&M alumni and a S&P 500 software engineer.
-                He has a computer science bachelor&apos;s of science degree and
-                a business minor. He used to work in innovation and
-                <span className="text-blue-600 font-medium"> product</span>{" "}
-                management.
-              </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                He has more than 5 years of experience building websites and
-                <span className="text-blue-600 font-medium"> product</span>{" "}
-                management certifications.
-              </p>
-              <p className="text-gray-500 dark:text-gray-400">
-                {"Check out my "}
-                <AccordionLink
-                  href="https://linkedin.com/in/gvzqz"
-                  text="LinkedIn"
-                />
-                {" for a quick glance of my professional experience."}
-              </p>
-            </Accordion.Content>
-          </Accordion.Panel>
-          <Accordion.Panel>
-            <Accordion.Title>
-              What results can I expect from working with Gerardo?
-            </Accordion.Title>
-            <Accordion.Content>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Gerardo focuses on the work that is most meaningful to you.
-              </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                He may start by identifying ways to reduce costs or by
-                developing custom software solutions tailored to your business
-                needs.
-              </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Learn more about some of the technologies Gerardo uses:
-              </p>
-              <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-                <li>
-                  <a
-                    href="https://nextjs.org/"
-                    className="text-blue-600 hover:underline dark:text-blue-500"
-                  >
-                    Next.js
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://vercel.com/"
-                    className="text-blue-600 hover:underline dark:text-blue-500"
-                  >
-                    Vercel
-                  </a>
-                </li>
-              </ul>
-            </Accordion.Content>
-          </Accordion.Panel>
-        </Accordion>
-      </div>
-    </section>
+    <div className="bg-secondary">
+      <Faq heading="Frequently asked questions" items={faqItems} />
+    </div>
   );
 }
 
