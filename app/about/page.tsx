@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import ImageCard from "@/components/imageCard";
 import { Marquee, MarqueeContent, MarqueeItem } from "@/components/ui/marquee";
+import SecureEmail from "@/components/SecureEmail";
 
 export default function About() {
   const clients = [
@@ -161,6 +162,20 @@ export default function About() {
             ))}
           </MarqueeContent>
         </Marquee>
+      </div>
+
+      {/* Contact Section */}
+      <div className="container mx-auto px-4 py-12 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            Get in Touch
+          </h2>
+          <div className="space-y-4">
+            <p className="text-lg text-gray-700">
+              <SecureEmail />
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
