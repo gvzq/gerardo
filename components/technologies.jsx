@@ -114,13 +114,13 @@ export default function Technologies() {
   };
 
   return (
-    <div className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
-      <section className="bg-gray-50 dark:bg-gray-900">
+    <div className="py-16 lg:py-24 bg-accent">
+      <section className="bg-accent">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-            Identify Technologies on Your Website
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-accent-foreground">
+            Technology Stack Analysis Tool
           </h2>
-          <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+          <p className="mb-8 lg:mb-16 font-light text-center text-accent-foreground/70 sm:text-xl">
             Discover the technology stack powering any website. Get insights
             into frameworks, libraries, and tools to inform your technical
             decisions.
@@ -130,7 +130,7 @@ export default function Technologies() {
             <div className="space-y-3">
               <label
                 htmlFor="website"
-                className="block text-sm font-medium text-gray-900 dark:text-white"
+                className="block text-sm font-medium text-accent-foreground"
               >
                 Website URL
               </label>
@@ -144,7 +144,7 @@ export default function Technologies() {
                 className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors"
                 disabled={isLoading}
               />
-              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-sm text-accent-foreground/70">
                 Enter a complete URL to discover its technology stack and get insights
               </p>
               {error && (
@@ -155,7 +155,7 @@ export default function Technologies() {
             </div>
 
             <div className="space-y-4">
-              <label className="block text-sm font-medium text-gray-900 dark:text-white">
+              <label className="block text-sm font-medium text-accent-foreground">
                 Analysis Type
               </label>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -169,7 +169,7 @@ export default function Technologies() {
                     className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     disabled={isLoading}
                   />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="text-sm text-accent-foreground/80">
                     Basic Analysis
                   </span>
                 </label>
@@ -183,7 +183,7 @@ export default function Technologies() {
                     className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     disabled={isLoading}
                   />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="text-sm text-accent-foreground/80">
                     Enhanced with Insights
                   </span>
                 </label>

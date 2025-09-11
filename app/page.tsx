@@ -23,6 +23,7 @@ import { TbBrandNextjs } from "react-icons/tb";
 import innovation from "@/public/innovation-pipeline.jpeg";
 import ImageCard from "@/components/imageCard";
 import Technologies from "@/components/technologies";
+import SecureEmail from "@/components/SecureEmail";
 
 function Quote() {
   return (
@@ -569,6 +570,42 @@ function Questions() {
   );
 }
 
+function ContactCTA() {
+  return (
+    <section className="bg-primary py-12 lg:py-16">
+      <div className="max-w-3xl mx-auto px-6 text-center">
+        <h2 className="text-2xl font-bold text-primary-foreground mb-6">
+          Let&apos;s Build Together
+        </h2>
+
+        <div className="text-lg text-primary-foreground mb-6">
+          <SecureEmail />
+        </div>
+
+        <div className="flex justify-center">
+          <Link href="https://zcal.co/gerardo/consulting">
+            <span className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary bg-primary-foreground rounded-lg hover:bg-primary-foreground/90 transition-colors duration-200">
+              Schedule a Call
+              <svg
+                className="w-4 h-4 ml-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <div>
@@ -578,6 +615,7 @@ export default function Home() {
       <Quote />
       <Process />
       <Technologies />
+      <ContactCTA />
       <Questions />
     </div>
   );
