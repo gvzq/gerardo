@@ -10,7 +10,17 @@ interface CompanyData {
     currencyCode: string;
   };
   employees?: number;
-  companySize?: "OPT0_1" | "OPT2_10" | "OPT11_50" | "OPT51_200" | "OPT201_500" | "OPT501_1000" | "OPT1001_5000" | "OPT5001_10000" | "OPT10001" | "NA";
+  companySize?:
+    | "OPT0_1"
+    | "OPT2_10"
+    | "OPT11_50"
+    | "OPT51_200"
+    | "OPT201_500"
+    | "OPT501_1000"
+    | "OPT1001_5000"
+    | "OPT5001_10000"
+    | "OPT10001"
+    | "NA";
   founded?: string;
   industry?: string;
   description?: string;
@@ -70,7 +80,10 @@ interface OpportunityData {
 
 interface NoteData {
   title: string;
-  bodyV2: string;
+  bodyV2: {
+    blocknote?: string;
+    markdown: string;
+  };
   createdBy?: string;
   position?: number;
 }
@@ -185,7 +198,9 @@ export async function submitMAForm(formData: FormData) {
     let existingCompanies;
     try {
       existingCompanies = await callTwentyAPI(
-        `companies?filter=name[eq]:"${encodeURIComponent(formData.companyName)}"`,
+        `companies?filter=name[eq]:"${encodeURIComponent(
+          formData.companyName
+        )}"`,
         "GET"
       );
 
@@ -230,17 +245,20 @@ export async function submitMAForm(formData: FormData) {
 
       // Add company size if provided (using Twenty CRM enum values directly)
       if (formData.employees) {
-        const employeeCountMap: Record<NonNullable<CompanyData["companySize"]>, number> = {
-          "OPT0_1": 1,
-          "OPT2_10": 6,      // Average of 2-10
-          "OPT11_50": 30,    // Average of 11-50
-          "OPT51_200": 125,  // Average of 51-200
-          "OPT201_500": 350, // Average of 201-500
-          "OPT501_1000": 750,    // Average of 501-1000
-          "OPT1001_5000": 3000,  // Average of 1001-5000
-          "OPT5001_10000": 7500, // Average of 5001-10000
-          "OPT10001": 15000,     // Estimated for 10001+
-          "NA": 1,
+        const employeeCountMap: Record<
+          NonNullable<CompanyData["companySize"]>,
+          number
+        > = {
+          OPT0_1: 1,
+          OPT2_10: 6, // Average of 2-10
+          OPT11_50: 30, // Average of 11-50
+          OPT51_200: 125, // Average of 51-200
+          OPT201_500: 350, // Average of 201-500
+          OPT501_1000: 750, // Average of 501-1000
+          OPT1001_5000: 3000, // Average of 1001-5000
+          OPT5001_10000: 7500, // Average of 5001-10000
+          OPT10001: 15000, // Estimated for 10001+
+          NA: 1,
         };
 
         const selectedSize = formData.employees as CompanyData["companySize"];
@@ -258,11 +276,18 @@ export async function submitMAForm(formData: FormData) {
 
       // Create company in Twenty CRM
       console.log("Creating company in Twenty CRM with data:", companyData);
-      const companyResponse = await callTwentyAPI("companies", "POST", companyData);
+      const companyResponse = await callTwentyAPI(
+        "companies",
+        "POST",
+        companyData
+      );
       console.log("Raw company response:", companyResponse);
 
       // Handle GraphQL mutation response structure
-      company = companyResponse.data?.createCompany || companyResponse.data || companyResponse;
+      company =
+        companyResponse.data?.createCompany ||
+        companyResponse.data ||
+        companyResponse;
       console.log("Company created:", { id: company?.id, name: company?.name });
 
       // Validate company creation
@@ -277,7 +302,11 @@ export async function submitMAForm(formData: FormData) {
     try {
       console.log("Searching for existing person...");
       existingPeople = await callTwentyAPI(
-        `people?filter=companyId[eq]:"${company.id}",name.firstName[eq]:"${encodeURIComponent(formData.firstName)}",name.lastName[eq]:"${encodeURIComponent(formData.lastName)}"`,
+        `people?filter=companyId[eq]:"${
+          company.id
+        }",name.firstName[eq]:"${encodeURIComponent(
+          formData.firstName
+        )}",name.lastName[eq]:"${encodeURIComponent(formData.lastName)}"`,
         "GET"
       );
 
@@ -319,10 +348,10 @@ export async function submitMAForm(formData: FormData) {
       // Add phone if provided
       if (formData.phone) {
         // Parse the phone number - assume US format for now
-        let phoneNumber = formData.phone.replace(/\D/g, ''); // Remove non-digits
+        let phoneNumber = formData.phone.replace(/\D/g, ""); // Remove non-digits
 
         // If phone starts with 1, it includes country code
-        if (phoneNumber.startsWith('1') && phoneNumber.length === 11) {
+        if (phoneNumber.startsWith("1") && phoneNumber.length === 11) {
           phoneNumber = phoneNumber.substring(1); // Remove the '1' prefix
         }
 
@@ -338,7 +367,10 @@ export async function submitMAForm(formData: FormData) {
       const personResponse = await callTwentyAPI("people", "POST", personData);
       console.log("Raw person response:", personResponse);
 
-      person = personResponse.data?.createPerson || personResponse.data || personResponse;
+      person =
+        personResponse.data?.createPerson ||
+        personResponse.data ||
+        personResponse;
       console.log("Person created:", { id: person?.id, name: person?.name });
 
       // Validate person creation
@@ -349,18 +381,26 @@ export async function submitMAForm(formData: FormData) {
 
     // Validate company has ID before proceeding
     if (!company?.id) {
-      throw new Error("Company ID is missing - cannot proceed with opportunity creation");
+      throw new Error(
+        "Company ID is missing - cannot proceed with opportunity creation"
+      );
     }
 
     // Check for existing M&A opportunities for this company
     let existingOpportunity;
     try {
-      console.log("Searching for existing opportunities for company ID:", company.id);
+      console.log(
+        "Searching for existing opportunities for company ID:",
+        company.id
+      );
       const existingOpportunities = await callTwentyAPI(
         `opportunities?filter=companyId[eq]:"${company.id}",name[ilike]:"%M&A%"`,
         "GET"
       );
-      console.log("Existing opportunities search result:", existingOpportunities);
+      console.log(
+        "Existing opportunities search result:",
+        existingOpportunities
+      );
 
       if (existingOpportunities.data && existingOpportunities.data.length > 0) {
         existingOpportunity = existingOpportunities.data[0];
@@ -398,7 +438,10 @@ export async function submitMAForm(formData: FormData) {
       console.log("Raw opportunity update response:", updateResponse);
 
       // Handle GraphQL mutation response structure
-      opportunity = updateResponse.data?.updateOpportunity || updateResponse.data || updateResponse;
+      opportunity =
+        updateResponse.data?.updateOpportunity ||
+        updateResponse.data ||
+        updateResponse;
       console.log("Opportunity updated:", {
         id: opportunity?.id,
         name: opportunity?.name,
@@ -406,7 +449,7 @@ export async function submitMAForm(formData: FormData) {
     } else {
       // Prepare new opportunity data
       const opportunityData: OpportunityData = {
-        name: `M&A Opportunity - ${formData.companyName}`,
+        name: `${formData.companyName} - M&A (Website Form)`,
         companyId: company.id,
         stage: "SCREENING", // Default stage
         createdBy: GERARDO_OWNER_ID,
@@ -436,7 +479,10 @@ export async function submitMAForm(formData: FormData) {
       }
 
       // Create opportunity in Twenty CRM
-      console.log("Creating opportunity in Twenty CRM with data:", opportunityData);
+      console.log(
+        "Creating opportunity in Twenty CRM with data:",
+        opportunityData
+      );
       const opportunityResponse = await callTwentyAPI(
         "opportunities",
         "POST",
@@ -445,7 +491,10 @@ export async function submitMAForm(formData: FormData) {
       console.log("Raw opportunity response:", opportunityResponse);
 
       // Handle GraphQL mutation response structure
-      opportunity = opportunityResponse.data?.createOpportunity || opportunityResponse.data || opportunityResponse;
+      opportunity =
+        opportunityResponse.data?.createOpportunity ||
+        opportunityResponse.data ||
+        opportunityResponse;
       console.log("Opportunity created:", {
         id: opportunity?.id,
         name: opportunity?.name,
@@ -464,28 +513,30 @@ export async function submitMAForm(formData: FormData) {
 - **Company Name**: ${formData.companyName}
 - **Business Type**: ${formData.businessType}
 - **Annual Revenue**: ${formData.revenue}
-- **Year Founded**: ${formData.yearFounded || 'Not specified'}
-- **Number of Employees**: ${formData.employees || 'Not specified'}
+- **Year Founded**: ${formData.yearFounded || "Not specified"}
+- **Number of Employees**: ${formData.employees || "Not specified"}
 
 ## Contact Information
 - **Founder/Contact**: ${formData.firstName} ${formData.lastName}
 - **Email**: ${formData.email}
-- **Phone**: ${formData.phone || 'Not provided'}
+- **Phone**: ${formData.phone || "Not provided"}
 
 ## M&A Details
-- **Reason for Selling**: ${formData.reason || 'Not specified'}
-- **Ideal Timeline**: ${formData.timeline || 'Not specified'}
+- **Reason for Selling**: ${formData.reason || "Not specified"}
+- **Ideal Timeline**: ${formData.timeline || "Not specified"}
 
 ## Additional Information
-${formData.additionalInfo || 'No additional information provided'}
+${formData.additionalInfo || "No additional information provided"}
 
 ---
 *Form submitted on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}*
       `.trim();
 
       const noteData: NoteData = {
-        title: `M&A Form Submission - ${formData.companyName}`,
-        bodyV2: noteContent,
+        title: `${formData.companyName} - M&A Form Submission`,
+        bodyV2: {
+          markdown: noteContent,
+        },
         createdBy: GERARDO_OWNER_ID,
         position: 0, // Set default position for sorting
       };
@@ -495,7 +546,8 @@ ${formData.additionalInfo || 'No additional information provided'}
         const noteResponse = await callTwentyAPI("notes", "POST", noteData);
         console.log("Raw note response:", noteResponse);
 
-        const note = noteResponse.data?.createNote || noteResponse.data || noteResponse;
+        const note =
+          noteResponse.data?.createNote || noteResponse.data || noteResponse;
         console.log("Note created:", { id: note?.id, title: note?.title });
       } catch (noteError) {
         console.warn("Failed to create note:", noteError);

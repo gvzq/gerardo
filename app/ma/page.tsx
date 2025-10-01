@@ -117,275 +117,305 @@ function LeadCaptureForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <label
-            htmlFor="companyName"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Company Name *
-          </label>
-          <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            value={formData.companyName}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Your company name"
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Company Information Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+          Company Information
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="companyName"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Company Name *
+            </label>
+            <input
+              type="text"
+              id="companyName"
+              name="companyName"
+              value={formData.companyName}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Your company name"
+            />
+          </div>
 
-        <div>
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            First Name *
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="First name"
-          />
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <label
-            htmlFor="lastName"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Last Name *
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Last name"
-          />
+          <div>
+            <label
+              htmlFor="businessType"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Business Type *
+            </label>
+            <select
+              id="businessType"
+              name="businessType"
+              value={formData.businessType}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="" disabled>Select business type</option>
+              <option value="saas">SaaS Platform</option>
+              <option value="mobile-app">Mobile App</option>
+              <option value="web-app">Web Application</option>
+              <option value="ecommerce">E-commerce</option>
+              <option value="fintech">FinTech</option>
+              <option value="healthtech">HealthTech</option>
+              <option value="edtech">EdTech</option>
+              <option value="ai-ml">AI/ML Company</option>
+              <option value="developer-tools">Developer Tools</option>
+              <option value="other">Other Tech Business</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      {/* Personal Information Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+          Contact Information
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="firstName"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              First Name *
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="First name"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="lastName"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Last Name *
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Last name"
+            />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Email Address *
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Phone Number (US)
+            </label>
+            <PhoneInput
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handlePhoneChange}
+              placeholder="(321) 123-4567"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Business Details Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+          Business Details
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="revenue"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Annual Revenue *
+            </label>
+            <select
+              id="revenue"
+              name="revenue"
+              value={formData.revenue}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="" disabled>Select revenue range</option>
+              <option value="under-100k">Under $100K</option>
+              <option value="100k-500k">$100K - $500K</option>
+              <option value="500k-1m">$500K - $1M</option>
+              <option value="1m-5m">$1M - $5M</option>
+              <option value="5m-10m">$5M - $10M</option>
+              <option value="over-10m">Over $10M</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              htmlFor="employees"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Number of Employees
+            </label>
+            <select
+              id="employees"
+              name="employees"
+              value={formData.employees}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="" disabled>Select team size</option>
+              <option value="OPT0_1">1 employee</option>
+              <option value="OPT2_10">2-10 employees</option>
+              <option value="OPT11_50">11-50 employees</option>
+              <option value="OPT51_200">51-200 employees</option>
+              <option value="OPT201_500">201-500 employees</option>
+              <option value="OPT501_1000">501-1000 employees</option>
+              <option value="OPT1001_5000">1001-5000 employees</option>
+              <option value="OPT5001_10000">5001-10000 employees</option>
+              <option value="OPT10001">10001+ employees</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="yearFounded"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Year Founded
+            </label>
+            <input
+              type="number"
+              id="yearFounded"
+              name="yearFounded"
+              value={formData.yearFounded}
+              onChange={handleChange}
+              min="1600"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="2020"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* M&A Information Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+          Acquisition Interest
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="reason"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Why are you considering selling?
+            </label>
+            <select
+              id="reason"
+              name="reason"
+              value={formData.reason}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="" disabled>Select primary reason</option>
+              <option value="retirement">Ready to retire</option>
+              <option value="new-venture">Starting new venture</option>
+              <option value="growth-capital">Need growth capital</option>
+              <option value="strategic-partner">Want strategic partner</option>
+              <option value="market-timing">Good market timing</option>
+              <option value="burnout">Founder burnout</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              htmlFor="timeline"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Ideal Timeline
+            </label>
+            <select
+              id="timeline"
+              name="timeline"
+              value={formData.timeline}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="" disabled>Select timeline</option>
+              <option value="immediate">Immediately</option>
+              <option value="3-months">Within 3 months</option>
+              <option value="6-months">Within 6 months</option>
+              <option value="1-year">Within 1 year</option>
+              <option value="exploring">Just exploring</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Additional Information Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+          Additional Information
+        </h3>
         <div>
           <label
-            htmlFor="email"
+            htmlFor="additionalInfo"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Email Address *
+            Tell us more about your business
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+          <textarea
+            id="additionalInfo"
+            name="additionalInfo"
+            value={formData.additionalInfo}
             onChange={handleChange}
-            required
+            rows={4}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="your@email.com"
+            placeholder="Key metrics, unique advantages, growth trajectory, or anything else you'd like us to know..."
           />
         </div>
-
-        <div>
-          <label
-            htmlFor="phone"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Phone Number (US)
-          </label>
-          <PhoneInput
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handlePhoneChange}
-            placeholder="(321) 123-4567"
-          />
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <label
-            htmlFor="businessType"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Business Type *
-          </label>
-          <select
-            id="businessType"
-            name="businessType"
-            value={formData.businessType}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="" disabled>Select business type</option>
-            <option value="saas">SaaS Platform</option>
-            <option value="mobile-app">Mobile App</option>
-            <option value="web-app">Web Application</option>
-            <option value="ecommerce">E-commerce</option>
-            <option value="fintech">FinTech</option>
-            <option value="healthtech">HealthTech</option>
-            <option value="edtech">EdTech</option>
-            <option value="ai-ml">AI/ML Company</option>
-            <option value="developer-tools">Developer Tools</option>
-            <option value="other">Other Tech Business</option>
-          </select>
-        </div>
-
-        <div>
-          <label
-            htmlFor="revenue"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Annual Revenue *
-          </label>
-          <select
-            id="revenue"
-            name="revenue"
-            value={formData.revenue}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="" disabled>Select revenue range</option>
-            <option value="under-100k">Under $100K</option>
-            <option value="100k-500k">$100K - $500K</option>
-            <option value="500k-1m">$500K - $1M</option>
-            <option value="1m-5m">$1M - $5M</option>
-            <option value="5m-10m">$5M - $10M</option>
-            <option value="over-10m">Over $10M</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <label
-            htmlFor="yearFounded"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Year Founded
-          </label>
-          <input
-            type="number"
-            id="yearFounded"
-            name="yearFounded"
-            value={formData.yearFounded}
-            onChange={handleChange}
-            min="1600"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="2020"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="employees"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Number of Employees
-          </label>
-          <select
-            id="employees"
-            name="employees"
-            value={formData.employees}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="" disabled>Select team size</option>
-            <option value="OPT0_1">1 employee</option>
-            <option value="OPT2_10">2-10 employees</option>
-            <option value="OPT11_50">11-50 employees</option>
-            <option value="OPT51_200">51-200 employees</option>
-            <option value="OPT201_500">201-500 employees</option>
-            <option value="OPT501_1000">501-1000 employees</option>
-            <option value="OPT1001_5000">1001-5000 employees</option>
-            <option value="OPT5001_10000">5001-10000 employees</option>
-            <option value="OPT10001">10001+ employees</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <label
-            htmlFor="reason"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Why are you considering selling?
-          </label>
-          <select
-            id="reason"
-            name="reason"
-            value={formData.reason}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="" disabled>Select primary reason</option>
-            <option value="retirement">Ready to retire</option>
-            <option value="new-venture">Starting new venture</option>
-            <option value="growth-capital">Need growth capital</option>
-            <option value="strategic-partner">Want strategic partner</option>
-            <option value="market-timing">Good market timing</option>
-            <option value="burnout">Founder burnout</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label
-            htmlFor="timeline"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Ideal Timeline
-          </label>
-          <select
-            id="timeline"
-            name="timeline"
-            value={formData.timeline}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="" disabled>Select timeline</option>
-            <option value="immediate">Immediately</option>
-            <option value="3-months">Within 3 months</option>
-            <option value="6-months">Within 6 months</option>
-            <option value="1-year">Within 1 year</option>
-            <option value="exploring">Just exploring</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label
-          htmlFor="additionalInfo"
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
-          Tell us more about your business
-        </label>
-        <textarea
-          id="additionalInfo"
-          name="additionalInfo"
-          value={formData.additionalInfo}
-          onChange={handleChange}
-          rows={4}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Key metrics, unique advantages, growth trajectory, or anything else you'd like us to know..."
-        />
       </div>
 
       <div className="text-center">
@@ -411,7 +441,7 @@ function LeadCaptureForm() {
 // Hero Section
 function HeroSection() {
   return (
-    <section className="bg-primary text-primary-foreground pt-24 pb-20 lg:pt-28 lg:pb-24">
+    <section className="bg-primary text-primary-foreground pt-20 pb-20 lg:pb-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -753,11 +783,10 @@ function ContactSection() {
 // Main Page Component
 export default function MAPage() {
   return (
-    <div className="relative">
+    <div className="relative -mt-20">
+      {/* -mt-20 cancels out the main layout's pt-20 */}
       <MANavbar />
       <div>
-        {" "}
-        {/* No additional padding needed - navbar handles spacing */}
         <HeroSection />
         <ServicesSection />
         <ProcessSection />
