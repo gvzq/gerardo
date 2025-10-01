@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaBuildingColumns, FaPhone, FaChartLine } from "react-icons/fa6";
@@ -8,6 +8,62 @@ import { usePathname } from "next/navigation";
 
 export default function MANavbar() {
   const path = usePathname();
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["process", "valuation", "faq", "contact"];
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Check if user is near bottom (within 100px)
+      const isNearBottom = scrollPosition + windowHeight >= documentHeight - 100;
+
+      // If near bottom, activate contact section
+      if (isNearBottom) {
+        const contactElement = document.getElementById("contact");
+        if (contactElement) {
+          setActiveSection("contact");
+          return;
+        }
+      }
+
+      // Otherwise, check which section is most visible
+      let maxVisibility = 0;
+      let mostVisibleSection = "";
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top;
+          const elementBottom = rect.bottom;
+          const elementHeight = rect.height;
+
+          // Calculate how much of the section is visible in viewport
+          const visibleTop = Math.max(0, Math.min(windowHeight, elementBottom) - Math.max(0, elementTop));
+          const visibilityRatio = visibleTop / elementHeight;
+
+          // Prioritize sections that are in the upper portion of viewport
+          const positionBonus = elementTop < windowHeight * 0.3 ? 0.3 : 0;
+          const totalScore = visibilityRatio + positionBonus;
+
+          if (totalScore > maxVisibility && visibilityRatio > 0.2) {
+            maxVisibility = totalScore;
+            mostVisibleSection = section;
+          }
+        }
+      }
+
+      setActiveSection(mostVisibleSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm h-16">
@@ -35,7 +91,7 @@ export default function MANavbar() {
             <Link
               href="/ma"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                path === "/ma"
+                activeSection === "" && path === "/ma"
                   ? "text-primary border-b-2 border-primary pb-1"
                   : "text-muted-foreground"
               }`}
@@ -44,27 +100,43 @@ export default function MANavbar() {
             </Link>
             <Link
               href="/ma#process"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                activeSection === "process"
+                  ? "text-primary border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              }`}
             >
               Process
             </Link>
             <Link
               href="/ma#valuation"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                activeSection === "valuation"
+                  ? "text-primary border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              }`}
             >
               Get Valuation
             </Link>
             <Link
-              href="/"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              href="/ma#faq"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                activeSection === "faq"
+                  ? "text-primary border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              }`}
             >
-              Consulting
+              FAQ
             </Link>
             <Link
-              href="/about"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              href="/ma#contact"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                activeSection === "contact"
+                  ? "text-primary border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              }`}
             >
-              About
+              Contact
             </Link>
           </div>
 
@@ -81,8 +153,7 @@ export default function MANavbar() {
 
             {/* Primary CTA */}
             <Link href="/ma#valuation">
-              <Button size="sm" className="flex items-center space-x-2">
-                <FaChartLine className="w-3 h-3" />
+              <Button size="sm">
                 <span className="hidden sm:inline">Get Valuation</span>
                 <span className="sm:hidden">Valuation</span>
               </Button>
@@ -126,18 +197,6 @@ export default function MANavbar() {
             className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
           >
             Get Business Valuation
-          </Link>
-          <Link
-            href="/"
-            className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
-          >
-            Consulting Services
-          </Link>
-          <Link
-            href="/about"
-            className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
-          >
-            About
           </Link>
           <a
             href="tel:+1(804)372-7365"

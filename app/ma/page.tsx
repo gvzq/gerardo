@@ -67,6 +67,28 @@ function LeadCaptureForm() {
     e.preventDefault();
     setStatus("loading");
 
+    // Validate business email
+    const personalEmailDomains = [
+      'gmail.com',
+      'yahoo.com',
+      'hotmail.com',
+      'outlook.com',
+      'aol.com',
+      'icloud.com',
+      'live.com',
+      'msn.com',
+      'ymail.com',
+      'protonmail.com',
+      'mail.com'
+    ];
+
+    const emailDomain = formData.email.toLowerCase().split('@')[1];
+    if (personalEmailDomains.includes(emailDomain)) {
+      setStatus("error");
+      setMessage("Please use a business or corporate email address. Personal email addresses (Gmail, Yahoo, Hotmail, Outlook, etc.) are not accepted.");
+      return;
+    }
+
     try {
       // Submit to Twenty CRM via server action
       const result = await submitMAForm(formData);
@@ -158,7 +180,9 @@ function LeadCaptureForm() {
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="" disabled>Select business type</option>
+              <option value="" disabled>
+                Select business type
+              </option>
               <option value="saas">SaaS Platform</option>
               <option value="mobile-app">Mobile App</option>
               <option value="web-app">Web Application</option>
@@ -278,7 +302,9 @@ function LeadCaptureForm() {
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="" disabled>Select revenue range</option>
+              <option value="" disabled>
+                Select revenue range
+              </option>
               <option value="under-100k">Under $100K</option>
               <option value="100k-500k">$100K - $500K</option>
               <option value="500k-1m">$500K - $1M</option>
@@ -302,7 +328,9 @@ function LeadCaptureForm() {
               onChange={handleChange}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="" disabled>Select team size</option>
+              <option value="" disabled>
+                Select team size
+              </option>
               <option value="OPT0_1">1 employee</option>
               <option value="OPT2_10">2-10 employees</option>
               <option value="OPT11_50">11-50 employees</option>
@@ -358,7 +386,9 @@ function LeadCaptureForm() {
               onChange={handleChange}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="" disabled>Select primary reason</option>
+              <option value="" disabled>
+                Select primary reason
+              </option>
               <option value="retirement">Ready to retire</option>
               <option value="new-venture">Starting new venture</option>
               <option value="growth-capital">Need growth capital</option>
@@ -383,7 +413,9 @@ function LeadCaptureForm() {
               onChange={handleChange}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="" disabled>Select timeline</option>
+              <option value="" disabled>
+                Select timeline
+              </option>
               <option value="immediate">Immediately</option>
               <option value="3-months">Within 3 months</option>
               <option value="6-months">Within 6 months</option>
@@ -463,7 +495,10 @@ function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link href="#valuation">
-                <Button size="lg" className="px-8 py-4 text-lg font-semibold">
+                <Button
+                  size="lg"
+                  className="px-8 py-4 text-lg font-semibold !bg-white !text-gray-900 hover:!bg-gray-100 shadow-lg"
+                >
                   Get Free Valuation
                   <FaRocket className="w-4 h-4 ml-2" />
                 </Button>
@@ -471,9 +506,9 @@ function HeroSection() {
 
               <Link href="#process">
                 <Button
-                  variant="secondary"
+                  variant="outline"
                   size="lg"
-                  className="px-8 py-4 text-lg font-semibold"
+                  className="px-8 py-4 text-lg font-semibold !border-2 !border-white !text-white !bg-transparent hover:!bg-white/10"
                 >
                   How It Works
                 </Button>
@@ -554,10 +589,10 @@ function ServicesSection() {
     <section className="py-20 bg-secondary">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-secondary-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-secondary-foreground mb-4">
             Why Choose Our Acquisition Approach
           </h2>
-          <p className="text-xl text-secondary-foreground/70 max-w-3xl mx-auto">
+          <p className="text-lg lg:text-xl text-secondary-foreground/70 max-w-3xl mx-auto">
             Unlike traditional buyers, we&apos;re operators who understand the
             technical and business challenges you&apos;ve overcome.
           </p>
@@ -570,10 +605,10 @@ function ServicesSection() {
               className="bg-background rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="text-primary mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
+              <h3 className="text-xl lg:text-2xl font-semibold text-foreground mb-4">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
                 {service.description}
               </p>
             </div>
@@ -617,10 +652,10 @@ function ProcessSection() {
     <section id="process" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
             Our Acquisition Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
             From initial conversation to closing, we&apos;ve streamlined the
             process to be efficient and founder-friendly.
           </p>
@@ -632,10 +667,10 @@ function ProcessSection() {
               <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 {step.number}
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">
+              <h3 className="text-xl lg:text-2xl font-semibold text-foreground mb-3">
                 {step.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
                 {step.description}
               </p>
             </div>
@@ -664,10 +699,10 @@ function ValuationSection() {
     <section id="valuation" className="py-20 bg-secondary">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-secondary-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-secondary-foreground mb-4">
             Get Your Business Valued
           </h2>
-          <p className="text-xl text-secondary-foreground/70 max-w-3xl mx-auto">
+          <p className="text-lg lg:text-xl text-secondary-foreground/70 max-w-3xl mx-auto">
             Tell us about your tech business and we&apos;ll provide a
             confidential valuation within 48 hours.
           </p>
@@ -700,7 +735,7 @@ function FaqSection() {
       id: "faq-3",
       question: "Do you require seller financing?",
       answer:
-        "We prefer all-cash transactions for clean closings, but we're flexible on deal structure based on the specific business and seller preferences. We can discuss earnouts or consulting arrangements if they make sense for both parties.",
+        "We offer flexible payment plans tailored to each deal, including seller financing options. While we don't typically offer all-cash transactions, we work with you to structure a deal that works for both parties, including earnouts, consulting arrangements, or other creative financing solutions.",
     },
     {
       id: "faq-4",
@@ -723,7 +758,7 @@ function FaqSection() {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section id="faq" className="py-20 bg-background">
       <div className="max-w-4xl mx-auto px-6">
         <Faq heading="Frequently Asked Questions" items={faqItems} />
       </div>
@@ -734,47 +769,48 @@ function FaqSection() {
 // Contact Section
 function ContactSection() {
   return (
-    <section className="py-20 bg-primary text-primary-foreground">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6">
+    <section id="contact" className="py-24 lg:py-32 bg-primary text-primary-foreground">
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <h2 className="text-3xl lg:text-4xl font-bold mb-8 leading-tight">
           Ready to Explore Your Options?
         </h2>
-        <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-lg lg:text-xl text-primary-foreground/80 mb-12 max-w-3xl mx-auto leading-relaxed">
           Get a confidential valuation and learn about your exit opportunities.
           No obligation, just honest advice from experienced operators.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+        <div className="flex flex-col items-center gap-8 mb-12">
           <Link href="#valuation">
             <Button
               size="lg"
               variant="secondary"
-              className="px-8 py-4 text-lg font-semibold"
+              className="px-10 py-5 text-xl font-semibold"
             >
               Get Business Valuation
-              <FaChartLine className="w-4 h-4 ml-2" />
             </Button>
           </Link>
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-8">
             <a
               href="tel:+1(804)372-7365"
-              className="flex flex-col hover:text-primary-foreground/60 transition-colors"
+              className="flex flex-col items-center hover:text-primary-foreground/80 transition-colors"
             >
-              <div className="flex items-center">
-                <FaPhone className="w-4 h-4 mr-2" />
-                <span className="font-semibold">80-GERARDO-5</span>
+              <div className="flex items-center mb-1">
+                <FaPhone className="w-5 h-5 mr-2" />
+                <span className="text-2xl font-semibold">80-GERARDO-5</span>
               </div>
-              <span className="text-sm text-primary-foreground/70 ml-6">(804) 372-7365</span>
+              <span className="text-base text-primary-foreground/70">
+                (804) 372-7365
+              </span>
             </a>
-            <div className="flex items-center hover:text-primary-foreground/60 transition-colors">
-              <FaEnvelope className="w-4 h-4 mr-2" />
+            <div className="flex items-center text-lg hover:text-primary-foreground/80 transition-colors">
+              <FaEnvelope className="w-5 h-5 mr-2" />
               <SecureEmail />
             </div>
           </div>
         </div>
 
-        <p className="text-sm text-primary-foreground/60">
+        <p className="text-base text-primary-foreground/70">
           All communications are strictly confidential • Response within 24
           hours
         </p>

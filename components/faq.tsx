@@ -35,7 +35,7 @@ const Faq = ({
   return (
     <section className="py-16 lg:py-24">
       <div className="max-w-screen-xl px-6 mx-auto">
-        <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-center text-secondary-foreground lg:mb-8 lg:text-3xl">
+        <h2 className="mb-6 text-3xl lg:text-4xl font-bold tracking-tight text-center text-secondary-foreground lg:mb-8">
           {heading}
         </h2>
         <div className="max-w-3xl mx-auto">
@@ -46,10 +46,10 @@ const Faq = ({
                 value={`item-${index}`}
                 className="border-b border-gray-200 dark:border-gray-700 last:border-b-0"
               >
-                <AccordionTrigger className="font-semibold text-secondary-foreground hover:no-underline py-6 text-left">
+                <AccordionTrigger className="text-base lg:text-lg font-semibold text-secondary-foreground hover:no-underline py-6 text-left">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-500 dark:text-gray-400 pb-6">
+                <AccordionContent className="text-base lg:text-lg text-gray-500 dark:text-gray-400 pb-6">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

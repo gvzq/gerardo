@@ -152,10 +152,10 @@ function Features() {
     <section className="bg-secondary py-16 lg:py-24">
       <div className="px-6 mx-auto max-w-screen-xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold tracking-tight text-secondary-foreground lg:mb-8 lg:text-3xl">
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-secondary-foreground lg:mb-8">
             Technical Skills & Expertise
           </h2>
-          <p className="text-base text-secondary-foreground/70 md:text-lg">
+          <p className="text-lg lg:text-xl text-secondary-foreground/70">
             Core technologies and methodologies I use to deliver exceptional
             results
           </p>
@@ -165,8 +165,8 @@ function Features() {
             <div className="text-secondary p-3 w-16 h-16 shadow-lg rounded-full bg-secondary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <TbServerCog className="w-10 h-10" />
             </div>
-            <h6 className="text-xl mt-5 font-bold leading-5">Cloud</h6>
-            <p className="mt-2 mb-4 text-sm text-gray-900">
+            <h6 className="text-xl lg:text-2xl mt-5 font-bold leading-5">Cloud</h6>
+            <p className="mt-2 mb-4 text-base lg:text-lg text-gray-900">
               Cloud computing is the on-demand delivery with pay-as-you-go
               pricing. Gerardo has experience in AWS, GCP, Vercel, and Azure.
             </p>
@@ -181,10 +181,10 @@ function Features() {
             <div className="text-secondary p-3 w-16 h-16 shadow-lg rounded-full bg-secondary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <DiScrum className="w-10 h-10" />
             </div>
-            <h6 className="text-xl mt-5 font-bold leading-5">
+            <h6 className="text-xl lg:text-2xl mt-5 font-bold leading-5">
               Agile Product Management
             </h6>
-            <p className="mt-2 mb-4 text-sm text-gray-900">
+            <p className="mt-2 mb-4 text-base lg:text-lg text-gray-900">
               Agile is an iterative project management approach that delivers
               value faster and with fewer errors. Gerardo utilizes tools
               including but not limiting to Git, Jira, Github, Microsoft Teams,
@@ -201,10 +201,10 @@ function Features() {
             <div className="text-secondary p-3 w-16 h-16 shadow-lg rounded-full bg-secondary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <DiJavascript className="w-10 h-10" />
             </div>
-            <h6 className="text-xl mt-5 font-bold leading-5">
+            <h6 className="text-xl lg:text-2xl mt-5 font-bold leading-5">
               JavaScript/TypeScript
             </h6>
-            <p className="mt-2 mb-4 text-sm text-gray-900">
+            <p className="mt-2 mb-4 text-base lg:text-lg text-gray-900">
               JavaScript is a programming language used in 98% on the client
               side in websites, and could be used in servers as well. Gerardo
               has experience with React, Gatsby, Next, Node, and Angular.
@@ -227,10 +227,10 @@ function Process() {
     <section className="bg-background py-16 lg:py-24">
       <div className="px-6 mx-auto max-w-screen-xl">
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-extrabold tracking-tight text-foreground lg:mb-8 lg:text-3xl">
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground lg:mb-8">
             How can I help?
           </h2>
-          <p className="text-base text-muted-foreground md:text-lg">
+          <p className="text-lg lg:text-xl text-muted-foreground">
             I&apos;m ready to contribute and accelerate your efforts.
           </p>
         </div>
@@ -269,8 +269,8 @@ function Process() {
               </div>
 
               <div className="pt-1 pb-8">
-                <p className="mb-2 text-lg font-bold">Step 1: Ask Questions</p>
-                <p className="text-gray-700">
+                <p className="mb-2 text-xl lg:text-2xl font-bold">Step 1: Ask Questions</p>
+                <p className="text-base lg:text-lg text-gray-700">
                   People always describe who they want to be rather than who
                   they are. Let&apos;s get into specifics.
                 </p>
@@ -307,10 +307,10 @@ function Process() {
                 <div className="w-px h-full bg-gray-300" />
               </div>
               <div className="pt-1 pb-8">
-                <p className="mb-2 text-lg font-bold">
+                <p className="mb-2 text-xl lg:text-2xl font-bold">
                   Step 2: Define Value Propositions
                 </p>
-                <p className="text-gray-700">
+                <p className="text-base lg:text-lg text-gray-700">
                   What are the things you really care and want? Let&apos;s
                   narrow the definition of your customer profile.
                 </p>
@@ -347,10 +347,10 @@ function Process() {
                 <div className="w-px h-full bg-gray-300" />
               </div>
               <div className="pt-1 pb-8">
-                <p className="mb-2 text-lg font-bold">
+                <p className="mb-2 text-xl lg:text-2xl font-bold">
                   Step 3: Measure Accurately
                 </p>
-                <p className="text-gray-700">
+                <p className="text-base lg:text-lg text-gray-700">
                   It&apos;s essential for developing a truly useful and
                   enjoyable product with an excellent user experience.
                   Let&apos;s create a strategy.
@@ -379,8 +379,8 @@ function Process() {
                 </div>
               </div>
               <div className="pt-1">
-                <p className="mb-2 text-lg font-bold">Launch and Scale</p>
-                <p className="text-gray-700">
+                <p className="mb-2 text-xl lg:text-2xl font-bold">Launch and Scale</p>
+                <p className="text-base lg:text-lg text-gray-700">
                   Go slow to go fast. Let&apos;s partner to reach success!
                 </p>
               </div>
@@ -459,10 +459,10 @@ function ServicesSection() {
       <div className="container mx-auto px-6">
         <div className="flex flex-wrap text-center justify-center">
           <div className="w-full lg:w-6/12 px-4">
-            <h2 className="text-4xl font-semibold text-primary-foreground">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground">
               What I Do
             </h2>
-            <p className="text-lg leading-relaxed mt-4 mb-4 text-primary-foreground/80">
+            <p className="text-lg lg:text-xl leading-relaxed mt-4 mb-4 text-primary-foreground/80">
               Fractional CTO helping pre-seed startups and bootstrap businesses
               turn ideas into fundable products
             </p>
@@ -473,10 +473,10 @@ function ServicesSection() {
             <div className="text-primary p-3 w-16 h-16 shadow-lg rounded-full bg-primary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <VscProject className="w-10 h-10" />
             </div>
-            <h6 className="text-xl mt-5 font-bold text-primary-foreground">
+            <h6 className="text-xl lg:text-2xl mt-5 font-bold text-primary-foreground">
               AI Strategy & Implementation
             </h6>
-            <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
+            <p className="mt-2 mb-4 text-base lg:text-lg text-primary-foreground/80 leading-relaxed">
               Leverage practical AI solutions for competitive advantage without
               burning budget on custom development. Build
               <span className="text-accent font-medium">
@@ -490,10 +490,10 @@ function ServicesSection() {
             <div className="text-primary p-3 w-16 h-16 shadow-lg rounded-full bg-primary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <FaLaptopCode className="w-10 h-10" />
             </div>
-            <h6 className="text-xl mt-5 font-bold text-primary-foreground">
+            <h6 className="text-xl lg:text-2xl mt-5 font-bold text-primary-foreground">
               Investor Readiness
             </h6>
-            <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
+            <p className="mt-2 mb-4 text-base lg:text-lg text-primary-foreground/80 leading-relaxed">
               Prepare technical materials and architecture documentation that
               impress VCs during due diligence. Align technology roadmaps with
               <span className="text-accent font-medium">
@@ -507,10 +507,10 @@ function ServicesSection() {
             <div className="text-primary p-3 w-16 h-16 shadow-lg rounded-full bg-primary-foreground inline-flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
               <CgWebsite className="w-10 h-10" />
             </div>
-            <h6 className="text-xl mt-5 font-bold text-primary-foreground">
+            <h6 className="text-xl lg:text-2xl mt-5 font-bold text-primary-foreground">
               Technology Stack Selection
             </h6>
-            <p className="mt-2 mb-4 text-primary-foreground/80 leading-relaxed">
+            <p className="mt-2 mb-4 text-base lg:text-lg text-primary-foreground/80 leading-relaxed">
               Make foundational decisions that support long-term growth without
               over-engineering for current stage. Bridge the gap between vision
               and
@@ -574,7 +574,7 @@ function ContactCTA() {
   return (
     <section className="bg-primary py-12 lg:py-16">
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="text-2xl font-bold text-primary-foreground mb-6">
+        <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-6">
           Let&apos;s Build Together
         </h2>
 

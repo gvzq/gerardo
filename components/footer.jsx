@@ -9,11 +9,10 @@ export default function Foot() {
         <div className="flex w-full justify-between sm:flex sm:items-center sm:justify-between">
           <BrandLogo />
           <Footer.LinkGroup>
+            <Footer.Link href="/">Consulting</Footer.Link>
+            <Footer.Link href="/ma">M&A</Footer.Link>
             <Footer.Link href="/about">About</Footer.Link>
             <Footer.Link href="/blog">Blog</Footer.Link>
-            {/* <Footer.Link href="/contact">
-                            Contact
-                        </Footer.Link> */}
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />
