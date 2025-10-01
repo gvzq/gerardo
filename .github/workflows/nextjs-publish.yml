@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DEPLOY_TARGET: github-pages
+      NEXT_PUBLIC_DEPLOY_TARGET: github-pages
       NODE_ENV: production
       # Add GitHub secrets as environment variables
       GHOST_URL: ${{ secrets.GHOST_URL }}
@@ -104,12 +105,16 @@ jobs:
       - name: 🔧 Auto-fix Static Export Incompatibilities
         run: |
           echo "🚀 Starting static export compatibility fixes..."
-          
+
           # Remove known dynamic files that conflict with static export
           echo "🗑️ Removing known dynamic files..."
           rm -f app/robots.ts app/sitemap.ts
           rm -rf app/api/fallback-icon
-          
+
+          # Remove M&A page (uses Server Actions, not supported in static export)
+          echo "🗑️ Removing M&A page directory..."
+          rm -rf app/ma
+
           # Remove any API routes (not supported in static export)
           if [ -d "app/api" ]; then
             echo "🗑️ Removing remaining API routes..."

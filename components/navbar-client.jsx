@@ -38,12 +38,15 @@ export default function NavbarClient({ ghostPages }) {
         >
           About
         </Navbar.Link>
-        <Navbar.Link
-          href="/ma"
-          active={path.startsWith("/ma") ? "active" : ""}
-        >
-          M&A
-        </Navbar.Link>
+        {/* M&A page only available in non-static deployments (requires Server Actions) */}
+        {process.env.NEXT_PUBLIC_DEPLOY_TARGET !== "github-pages" && (
+          <Navbar.Link
+            href="/ma"
+            active={path.startsWith("/ma") ? "active" : ""}
+          >
+            M&A
+          </Navbar.Link>
+        )}
         {/* Dynamic Ghost Pages */}
         {ghostPages.map((page) => (
           <Navbar.Link

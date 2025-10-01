@@ -10,6 +10,9 @@ export const revalidate = 0;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_DOMAIN || "https://www.fctolabs.com";
 
+  // Check if this is a GitHub Pages static export
+  const isStaticExport = process.env.DEPLOY_TARGET === "github-pages";
+
   // Static routes - only main domain
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -36,13 +39,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
+  ];
+
+  // M&A page - only included in non-static deployments
+  if (!isStaticExport) {
+    staticRoutes.push({
       url: `${baseUrl}/ma`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
-    },
-  ];
+    });
+  }
 
   try {
     // Dynamic Ghost CMS pages (excluding conflicting routes and blog posts)
