@@ -251,7 +251,7 @@ function LeadCaptureForm() {
               name="phone"
               value={formData.phone}
               onChange={handlePhoneChange}
-              placeholder="(321) 123-4567"
+              placeholder="(804) 372-7365"
             />
           </div>
         </div>
@@ -758,11 +758,14 @@ function ContactSection() {
 
           <div className="flex items-center gap-6">
             <a
-              href="tel:+1234567890"
-              className="flex items-center hover:text-primary-foreground/60 transition-colors"
+              href="tel:+1(804)372-7365"
+              className="flex flex-col hover:text-primary-foreground/60 transition-colors"
             >
-              <FaPhone className="w-4 h-4 mr-2" />
-              <span>(555) 123-4567</span>
+              <div className="flex items-center">
+                <FaPhone className="w-4 h-4 mr-2" />
+                <span className="font-semibold">80-GERARDO-5</span>
+              </div>
+              <span className="text-sm text-primary-foreground/70 ml-6">(804) 372-7365</span>
             </a>
             <div className="flex items-center hover:text-primary-foreground/60 transition-colors">
               <FaEnvelope className="w-4 h-4 mr-2" />

@@ -72,11 +72,11 @@ export default function MANavbar() {
           <div className="flex items-center space-x-4">
             {/* Phone Number - Desktop */}
             <a
-              href="tel:+1(512)200-3641"
+              href="tel:+1(804)372-7365"
               className="hidden sm:flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <FaPhone className="w-3 h-3" />
-              <span>(512) 200-3641</span>
+              <span>(804) 372-7365</span>
             </a>
 
             {/* Primary CTA */}
@@ -140,10 +140,10 @@ export default function MANavbar() {
             About
           </Link>
           <a
-            href="tel:+1(512)200-3641"
+            href="tel:+1(804)372-7365"
             className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
           >
-            📞 (512) 200-3641
+            📞 (804) 372-7365
           </a>
         </div>
       </div>

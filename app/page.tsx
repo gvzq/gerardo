@@ -578,8 +578,18 @@ function ContactCTA() {
           Let&apos;s Build Together
         </h2>
 
-        <div className="text-lg text-primary-foreground mb-6">
-          <SecureEmail />
+        <div className="flex flex-col items-center gap-4 mb-6">
+          <div className="text-lg text-primary-foreground">
+            <SecureEmail />
+          </div>
+
+          <a
+            href="tel:+1(804)372-7365"
+            className="flex flex-col items-center hover:text-primary-foreground/80 transition-colors"
+          >
+            <span className="text-xl font-semibold text-primary-foreground">80-GERARDO-5</span>
+            <span className="text-sm text-primary-foreground/70">(804) 372-7365</span>
+          </a>
         </div>
 
         <div className="flex justify-center">

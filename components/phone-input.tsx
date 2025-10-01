@@ -19,7 +19,7 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   ({
     value,
     onChange,
-    placeholder = "(321) 123-4567",
+    placeholder = "(804) 372-7365",
     className = "",
     required = false,
     maxLength = 14,

@@ -21,9 +21,9 @@ export default function NavbarClient({ ghostPages }) {
       </Navbar.Brand>
       <div className="flex flex-1 justify-end md:order-2 px-3">
         <Button size="sm" variant="outline" asChild>
-          <a href="tel:+1(512)200-3641">
+          <a href="tel:+1(804)372-7365">
             <BsTelephone className="mr-2" />
-            (512) 200-3641
+            (804) 372-7365
           </a>
         </Button>
       </div>
