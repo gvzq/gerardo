@@ -23,6 +23,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import MANavbar from "@/components/ma-navbar";
 import { submitMAForm } from "@/lib/actions/ma-form";
 import PhoneInput from "@/components/phone-input";
+import { toast } from "sonner";
 
 // Lead Capture Form Component
 function LeadCaptureForm() {
@@ -85,7 +86,12 @@ function LeadCaptureForm() {
     const emailDomain = formData.email.toLowerCase().split('@')[1];
     if (personalEmailDomains.includes(emailDomain)) {
       setStatus("error");
-      setMessage("Please use a business or corporate email address. Personal email addresses (Gmail, Yahoo, Hotmail, Outlook, etc.) are not accepted.");
+      const errorMsg = "Please use a business or corporate email address. Personal email addresses (Gmail, Yahoo, Hotmail, Outlook, etc.) are not accepted.";
+      setMessage(errorMsg);
+      toast.error("Invalid Email Address", {
+        description: errorMsg,
+        duration: 5000,
+      });
       return;
     }
 
@@ -96,6 +102,10 @@ function LeadCaptureForm() {
       if (result.success) {
         setStatus("success");
         setMessage(result.message);
+        toast.success("Success!", {
+          description: result.message,
+          duration: 5000,
+        });
 
         // Reset form on success
         setFormData({
@@ -115,13 +125,20 @@ function LeadCaptureForm() {
       } else {
         setStatus("error");
         setMessage(result.message);
+        toast.error("Submission Failed", {
+          description: result.message,
+          duration: 5000,
+        });
         console.error("Form submission error:", result.error);
       }
     } catch (error) {
+      const errorMsg = "Something went wrong. Please try again or contact us directly.";
       setStatus("error");
-      setMessage(
-        "Something went wrong. Please try again or contact us directly."
-      );
+      setMessage(errorMsg);
+      toast.error("Error", {
+        description: errorMsg,
+        duration: 5000,
+      });
       console.error("Form submission error:", error);
     }
   };

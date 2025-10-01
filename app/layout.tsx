@@ -7,6 +7,7 @@ import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Nav from "@/components/navbar";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -72,6 +73,7 @@ export default function RootLayout({
         <footer>
           <Footer />
         </footer>
+        <Toaster />
       </body>
       <Script
         id="clarityMicrosoft"
